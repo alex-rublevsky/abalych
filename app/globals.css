@@ -19,3 +19,50 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Base typography styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Overused Grotesk", sans-serif;
+}
+
+h1 {
+  font-size: 4.5rem;
+  font-weight: 300;
+  line-height: 0.9;
+}
+
+h2 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  font-weight: 100;
+}
+
+h4 {
+  font-size: 1.8rem;
+  line-height: 1.2;
+  font-weight: 100;
+}
+
+@media (max-width: 640px) {
+  h1 { font-size: 2.9rem; }
+  h2 { font-size: 2.5rem; }
+  h3 { font-size: 2rem; }
+  h4 { font-size: 1.6rem; }
+}
+
+/* Add this to your existing globals.css */
+.overflow-x-auto {
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scroll-behavior: smooth;
+}
+
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}

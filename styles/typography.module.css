@@ -1,0 +1,75 @@
+/* Typography Module */
+.heading {
+  font-family: "Overused Grotesk", sans-serif;
+}
+
+.h1 {
+  composes: heading;
+  font-size: 4.5rem;
+  font-weight: 300;
+  line-height: 0.9;
+}
+
+.h2 {
+  composes: heading;
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.h3 {
+  composes: heading;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  font-weight: 100;
+}
+
+.h4 {
+  composes: heading;
+  font-size: 1.8rem;
+  line-height: 1.2;
+  font-weight: 100;
+}
+
+.h5 {
+  composes: heading;
+  font-size: var(--h5-size);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.h6 {
+  composes: heading;
+  font-size: var(--h6-size);
+  line-height: 1.05;
+  font-weight: 500;
+}
+
+.paragraph {
+  line-height: 1.5;
+}
+
+.largeDescription {
+  line-height: 1.1;
+  font-weight: 100;
+  max-width: 45ch;
+}
+
+.smallerText {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .h1 {
+    font-size: 2.9rem;
+  }
+  .h2 {
+    font-size: 2.5rem;
+  }
+  .h3 {
+    font-size: 2rem;
+  }
+  .h4 {
+    font-size: 1.6rem;
+  }
+} 
