@@ -1,0 +1,25 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "abalych",
+    "main": ".output/server/index.mjs",
+    "compatibility_date": "2025-04-10",
+    "compatibility_flags": ["nodejs_compat"],
+    "assets": {
+      "directory": ".output/public",
+    },
+    "observability": {
+      "enabled": true,
+    },
+    // "kv_namespaces": [
+    //   {
+    //     "binding": "CACHE",
+    //     "id": "5d8a8ea387f348f7a156ffd98384998c",
+    //   },
+    // ],
+    "routes": [
+      {
+        "custom_domain": true,
+        "pattern": "abalych.rublevsky.studio",
+      }
+    ],
+  }

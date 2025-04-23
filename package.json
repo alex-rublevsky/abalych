@@ -1,0 +1,47 @@
+{
+  "name": "abalych",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start",
+    "deploy": "pnpm run build && wrangler deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.0",
+    "@react-three/fiber": "^9.1.2",
+    "@studio-freight/lenis": "^1.0.42",
+    "@tailwindcss/postcss": "^4.1.4",
+    "@tanstack/react-router": "^1.116.0",
+    "@tanstack/react-router-devtools": "^1.116.0",
+    "@tanstack/react-start": "^1.116.2",
+    "@tanstack/start": "^1.116.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion-3d": "^12.4.13",
+    "lucide-react": "^0.503.0",
+    "motion": "^12.7.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.2.0",
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.175.0",
+    "vinxi": "0.5.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@types/three": "^0.175.0",
+    "autoprefixer": "^10.4.20",
+    "nitro-cloudflare-dev": "^0.2.2",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5.7.2",
+    "unenv": "^1.10.0",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}

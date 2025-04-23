@@ -1,0 +1,96 @@
+export const galleryData = [
+  "birch.jpg",
+  "cat-1.jpg",
+  "cat-2.jpg",
+  "cow.jpg",
+  "devochka.jpg",
+  "lake.jpg",
+  "moss.jpg",
+  "night-railway.jpg",
+  "sea-house.jpg",
+  "shoes.jpg",
+  "shrooms.jpg",
+  "uteshali.jpg",
+  "vesna.jpg",
+];
+
+// export default [
+//   {
+//     id: 1,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "birch.jpg",
+//   },
+//   {
+//     id: 2,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "cat-1.jpg",
+//   },
+//   {
+//     id: 3,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "cat-2.jpg",
+//   },
+//   {
+//     id: 4,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "cow.jpg",
+//   },
+//   {
+//     id: 5,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "devochka.jpg",
+//   },
+//   {
+//     id: 6,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "lake.jpg",
+//   },
+//   {
+//     id: 7,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "moss.jpg",
+//   },
+//   {
+//     id: 8,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "night-railway.jpg",
+//   },
+//   {
+//     id: 9,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "sea-house.jpg",
+//   },
+//   {
+//     id: 10,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "shoes.jpg",
+//   },
+//   {
+//     id: 11,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "shrooms.jpg",
+//   },
+//   {
+//     id: 12,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "uteshali.jpg",
+//   },
+//   {
+//     id: 13,
+//     content: <div className="text-white text-2xl">Card 1</div>,
+//     className: "aspect-1/1",
+//     thumbnail: "vesna.jpg",
+//   },
+// ];
