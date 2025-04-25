@@ -76,7 +76,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body className="overscroll-none">
-        <div className="p-2 flex gap-2 text-lg">
+        {/* TODO: delete the routes the links below lead to */}
+        {/* <div className="p-2 flex gap-2 text-lg">
           <Link
             to="/"
             activeProps={{
@@ -127,7 +128,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           >
             This Route Does Not Exist
           </Link>
-        </div>
+        </div> */}
         <hr />
 
         {children}

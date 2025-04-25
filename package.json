@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.0",
+    "@react-three/drei": "^10.0.7",
     "@react-three/fiber": "^9.1.2",
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/postcss": "^4.1.4",

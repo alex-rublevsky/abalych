@@ -1,23 +1,23 @@
 import { Canvas, useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { useScroll, useTransform } from "motion/react";
 import { motion } from "framer-motion-3d";
+import * as THREE from "three";
 
 export default function AbalychWorldwide() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section ref={sectionRef} className="h-screen no-padding-bottom no-padding">
-      <div className="h-full w-full max-w-[120rem] mx-auto relative">
-        <h1 className="absolute pl-3 top-1/2 -translate-y-1/2 mix-blend-difference text-primary z-10 text-[4rem] sm:text-[5rem] md:text-[8rem] lg:text-[10rem] 2xl:text-[13rem]">
-          Abalych
-          <br />
-          Worldwide
-        </h1>
-        <div className="absolute left-1/2 top-1/2 -translate-x-3/10 -translate-y-1/2 w-[70vw] h-[70vw] max-h-[80vh] max-w-[80vh] md:w-[80vw] md:h-[80vw] md:-translate-x-3/8">
-          <Earth parentRef={sectionRef} />
-        </div>
+    <section
+      ref={sectionRef}
+      className="h-screen w-full flex items-center justify-center no-padding-bottom no-padding"
+    >
+      <div
+        className="relative flex-none max-w-screen-xl"
+        style={{ width: "100%", aspectRatio: "1.5" }}
+      >
+        <Earth parentRef={sectionRef} />
       </div>
     </section>
   );
@@ -28,27 +28,66 @@ function Earth({
 }: {
   parentRef: React.RefObject<HTMLDivElement | null>;
 }) {
-  const [color, normal, aoMap] = useLoader(TextureLoader, [
-    "/public/earth-1.webp",
-    "/public/earth-2.webp",
-    "/public/earth-3.webp",
+  const [color, normal, aoMap, textImage] = useLoader(TextureLoader, [
+    "/earth-1.webp",
+    "/earth-2.webp",
+    "/earth-3.webp",
+    "/abalych-worldwide.png",
   ]);
+
+  useEffect(() => {
+    // Configure texture for proper transparency handling
+    textImage.premultiplyAlpha = false;
+    textImage.minFilter = THREE.NearestFilter;
+    textImage.magFilter = THREE.NearestFilter;
+    textImage.generateMipmaps = false;
+    textImage.needsUpdate = true;
+  }, [textImage]);
 
   const { scrollYProgress } = useScroll({
     target: parentRef,
     offset: ["start end", "end start"],
   });
 
-  const rotationY = useTransform(scrollYProgress, [0, 1], [0, Math.PI * 0.3]);
+  const rotationY = useTransform(scrollYProgress, [0, 1], [0, Math.PI * 0.45]);
 
   return (
-    <Canvas style={{ width: "100%", height: "100%" }}>
-      <ambientLight intensity={1} />
-      <directionalLight intensity={29.5} position={[1, 0, 0.2]} />
-      <motion.mesh scale={3} rotation-y={rotationY}>
-        <sphereGeometry args={[1, 64, 64]} />
-        <meshStandardMaterial map={color} normalMap={normal} aoMap={aoMap} />
-      </motion.mesh>
+    <Canvas
+      style={{ width: "100%", height: "100%" }}
+      className="h-full"
+      gl={{
+        alpha: true,
+        premultipliedAlpha: false,
+      }}
+    >
+      <ambientLight intensity={0.33} />
+      <directionalLight intensity={24.5} position={[1, 0, 0.15]} />
+
+      <group position={[1.5, 0, 0]} scale={1.1}>
+        {/* Earth sphere */}
+        <motion.mesh scale={2.4} rotation-y={rotationY}>
+          <sphereGeometry args={[1, 64, 64]} />
+          <meshStandardMaterial map={color} normalMap={normal} aoMap={aoMap} />
+        </motion.mesh>
+
+        {/* Text plane */}
+        <mesh position={[-2, 0, 2.5]} scale={[3.4, 1.7, 10]}>
+          <planeGeometry />
+          <meshBasicMaterial
+            map={textImage}
+            transparent={true}
+            blending={THREE.CustomBlending}
+            blendSrc={THREE.OneMinusDstColorFactor}
+            blendDst={THREE.OneMinusSrcColorFactor}
+            blendEquation={THREE.AddEquation}
+            depthWrite={false}
+            depthTest={true}
+            side={THREE.DoubleSide}
+            opacity={1}
+            alphaTest={0.01}
+          />
+        </mesh>
+      </group>
     </Canvas>
   );
 }

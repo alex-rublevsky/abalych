@@ -9,6 +9,8 @@ yarn.lock
 .output
 .vinxi
 
+.vscode
+
 /build/
 /api/
 /server/build

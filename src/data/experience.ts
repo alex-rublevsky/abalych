@@ -1,4 +1,13 @@
-export const experienceData = [
+export interface ExperienceEntry {
+  date: string;
+  title: string;
+  company: string;
+  description?: string;
+  logo?: string;
+  largeLogo?: boolean;
+}
+
+export const experienceData: ExperienceEntry[] = [
    {date: "Jan 2024 – April 2024", title: "Medical Research Volunteer", company: "Canadian centre for clinical trials (at Wilderman Medical Clinic)"},
    {date: "December 2024 - Current", title: "Technical support specialist", company: "MTRC"},
    {date: "Graduation 2025", title: "Bachelor of Science (B.Sc.) in Biology Candidate", company: "", logo: "logos/trent.png"},

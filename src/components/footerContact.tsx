@@ -6,14 +6,14 @@ export default function FooterContact() {
       className="w-full bg-secondary/20 relative h-[100dvh] no-padding"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
-      <div className="fixed bottom-0 h-[100dvh] w-full flex flex-col items-center justify-between">
-        <div className="flex flex-col items-center justify-center gap-0 h-full">
+      <div className="fixed bottom-0 h-[100dvh] w-full flex flex-col items-center justify-end">
+        <div className="flex flex-col items-center justify-center gap-0">
           <h5 className="opacity-50 translate-y-10">Contact me</h5>
           <div className="flex">
             <FramerMagnetic>
               <a
                 className="p-20 flex align-middle justify-center cursor-pointer group"
-                href=""
+                href="https://www.instagram.com/abalych/"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,7 @@ export default function FooterContact() {
             <FramerMagnetic>
               <a
                 className="p-20 flex align-middle justify-center cursor-pointer group"
-                href=""
+                href="https://t.me/sosipisososipisos"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ export default function FooterContact() {
             <FramerMagnetic>
               <a
                 className="p-20 flex align-middle justify-center cursor-pointer group"
-                href=""
+                href="https://www.linkedin.com/in/kristina-abalymova/"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
