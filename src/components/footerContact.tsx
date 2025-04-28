@@ -3,7 +3,7 @@ import FramerMagnetic from "./framerMagnetic";
 export default function FooterContact() {
   return (
     <section
-      className="w-full bg-secondary/20 relative h-[100dvh] no-padding"
+      className="w-full bg-accent/20 relative h-[100dvh] no-padding"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       <div className="fixed bottom-0 h-[100dvh] w-full flex flex-col items-center justify-end">
@@ -55,7 +55,9 @@ export default function FooterContact() {
             <FramerMagnetic>
               <a
                 className="p-20 flex align-middle justify-center cursor-pointer group"
-                href=""
+                href="mailto:kristina.abalymova@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

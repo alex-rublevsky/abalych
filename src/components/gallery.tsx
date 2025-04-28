@@ -1,12 +1,12 @@
 import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "../hooks/use-outside-click";
-import { type CardData } from "../data/gallery";
+import { type CardData, type GalleryData, galleryData } from "../data/gallery";
 import { ProgressiveBlur } from "./ui/progressive-blur";
 import { createPortal } from "react-dom";
 import Lenis from "@studio-freight/lenis";
 
-export function Gallery({ data, title }: { data: CardData[]; title: string }) {
+export function Gallery() {
   const [active, setActive] = useState<CardData | null>(null);
   const id = useId();
   const ref = useRef<HTMLDivElement>(null!) as React.RefObject<HTMLDivElement>;
@@ -36,43 +36,45 @@ export function Gallery({ data, title }: { data: CardData[]; title: string }) {
 
   return (
     <>
-      <section>
-        <h1 className="pb-14 text-center">{title}</h1>
-        <ul className="mx-auto w-full columns-2 lg:columns-3 2xl:columns-4 items-start gap-4">
-          {data.map((card) => (
-            <motion.div
-              layoutId={`card-${card.title}-${id}`}
-              key={card.title}
-              onClick={() => setActive(card)}
-              className="pb-4 flex flex-col hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer break-inside-avoid"
-            >
-              <div className="relative rounded-lg overflow-hidden">
-                <motion.div layoutId={`image-${card.title}-${id}`}>
-                  <img
-                    width={100}
-                    height={100}
-                    alt={card.title}
-                    src={`https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/${card.image}`}
-                    className="h-auto w-full  object-cover object-top"
-                  />
-                </motion.div>
+      {galleryData.sections.map((section) => (
+        <section key={section.title}>
+          <h1 className="pb-14 text-center">{section.title}</h1>
+          <ul className="mx-auto w-full columns-2 lg:columns-3 2xl:columns-4 items-start gap-4">
+            {section.entries.map((card) => (
+              <motion.div
+                layoutId={`card-${card.title}-${id}`}
+                key={card.title}
+                onClick={() => setActive(card)}
+                className="pb-4 flex flex-col hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer break-inside-avoid"
+              >
+                <div className="relative rounded-lg overflow-hidden">
+                  <motion.div layoutId={`image-${card.title}-${id}`}>
+                    <img
+                      width={100}
+                      height={100}
+                      alt={card.title}
+                      src={`https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/${card.image}`}
+                      className="h-auto w-full  object-cover object-top"
+                    />
+                  </motion.div>
 
-                <ProgressiveBlur
-                  blurIntensity={0.6}
-                  className="h-[5rem] absolute bottom-0 left-0 w-full"
-                />
-                <div
-                  className={`absolute inset-x-0 bottom-0 p-4 ${card.darkText ? "text-black" : "text-white"}`}
-                >
-                  <motion.h5 layoutId={`title-${card.title}-${id}`}>
-                    {card.title}
-                  </motion.h5>
+                  <ProgressiveBlur
+                    blurIntensity={0.6}
+                    className="h-[5rem] absolute bottom-0 left-0 w-full"
+                  />
+                  <div
+                    className={`absolute inset-x-0 bottom-0 p-4 ${card.darkText ? "text-black" : "text-white"}`}
+                  >
+                    <motion.h5 layoutId={`title-${card.title}-${id}`}>
+                      {card.title}
+                    </motion.h5>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </ul>
-      </section>
+              </motion.div>
+            ))}
+          </ul>
+        </section>
+      ))}
 
       {createPortal(
         <AnimatePresence>

@@ -1,9 +1,11 @@
+// TODO: subsections for professional experience, education, certificates
+// TODO: 3d model of amoeba
+
 import { createFileRoute } from "@tanstack/react-router";
 import FooterContact from "~/components/footerContact";
-import { Gallery } from "~/components/layout-grid";
+import { Gallery } from "~/components/gallery";
 import AbalychWorldwide from "~/components/abalychWorldwide";
 import SmoothScroll from "~/components/smoothScroll";
-import { photographyData, experimentData } from "~/data/gallery";
 import ExperienceSection from "~/components/experienceSection";
 
 export const Route = createFileRoute("/")({
@@ -29,8 +31,8 @@ function Home() {
         </section>
 
         <ExperienceSection />
-        <Gallery data={photographyData} title="Photography" />
-        <Gallery data={experimentData} title="Experiments" />
+        <Gallery />
+
         <AbalychWorldwide />
         <FooterContact />
       </main>
