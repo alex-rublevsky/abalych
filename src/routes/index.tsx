@@ -7,6 +7,7 @@ import { Gallery } from "~/components/gallery";
 import AbalychWorldwide from "~/components/abalychWorldwide";
 import SmoothScroll from "~/components/smoothScroll";
 import ExperienceSection from "~/components/experienceSection";
+import ParallaxGraffiti from "~/components/ui/parallaxGraffiti";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -31,6 +32,7 @@ function Home() {
         </section>
 
         <ExperienceSection />
+        <ParallaxGraffiti />
         <Gallery />
 
         <AbalychWorldwide />

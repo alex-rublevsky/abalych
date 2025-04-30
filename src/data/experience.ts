@@ -29,9 +29,10 @@ export const experienceData: ExperienceData = {
         },
         {
           date: "September 2019 - May 2020",
-          title: "Directed research in Neuropharmacology",
+          title: "Laboratory and Vivarium Assistant",
           company: "Reaviz Medical University",
-          description: "The impact of the adaptogen of plant origin Rhodiola rosea on resistance of rats to stress conditions",
+          description: `Directed research in neuropharmacology:
+          the impact of the adaptogen of plant origin Rhodiola rosea on resistance of rats to stress conditions`,
           logo: "logos/reaviz.png",
           largeLogo: true
         },
@@ -42,7 +43,7 @@ export const experienceData: ExperienceData = {
         },
         {
           date: "June 2024 — September 2024",
-          title: "Chinese Tea Practicioner",
+          title: "Chinese Tea Practitioner",
           company: "Mostik Teahouse",
           logo: "logos/mostik.webp",
           description: `• Conducted traditional Chinese tea ceremonies, educating participants on cultural practices and increasing attendee engagement
@@ -69,6 +70,10 @@ export const experienceData: ExperienceData = {
           title: "With Honors Diploma in General Studies",
           company: "Samara Medical-Technical Lyceum",
           logo: "logos/smtl.svg",
+          description: `• Directed research in Psychology
+• Undertook a project aimed at developing recommendations for high school students with Internet addiction.
+Topic: Formation of psychological complexes in cybercommunicatively dependent teenagers
+Work was presented on XI All-Russian conference of students "National heritage of Russia" of the forum "APK - Youth, Science, Innovation"`,
           largeLogo: true
         
         }
@@ -108,7 +113,6 @@ export const experienceData: ExperienceData = {
 }
 
       ]
-    },
-   
+    }
   ]
 }

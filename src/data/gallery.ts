@@ -27,6 +27,21 @@ export const galleryData: GalleryData = {
           description: "A curious feline lounges on the edge of a sunlit window, its eyes half-closed in meditative stillness. The air is thick with the warmth of midday, and the only sound is the subtle flick of its tail.\n\nThis cat seems to embody the calm of a world that spins too fast. Its fur catches the golden glow of afternoon light, hinting at the serenity often overlooked in domestic moments."
         },
         {
+          image: "chickens.jpg",
+          title: "Chickens",
+          description: "Where are the eggs?"
+        },
+        {
+          image: "flower.jpg",
+          title: "Flower",
+          description: "Nature type shit"
+        },
+        {
+          image: "leafs.jpg",
+          title: "Leafs",
+          description: "no fucking way"
+        },
+        {
           image: "cat-2.jpg",
           title: "Cat 2",
           description: "Nestled between crumpled blankets, this cat seems to have claimed a throne of fabric. Its whiskers twitch at a dream, paws curled like question marks in sleep.\n\nOutside the frame, the world hums. But in here, the only rhythm is the cat’s breathing—a gentle tempo that soothes the space like a lullaby.",

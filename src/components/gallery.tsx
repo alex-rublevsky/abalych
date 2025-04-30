@@ -38,7 +38,7 @@ export function Gallery() {
     <>
       {galleryData.sections.map((section) => (
         <section key={section.title}>
-          <h1 className="pb-14 text-center">{section.title}</h1>
+          <h1 className="pt-32 pb-20 text-center">{section.title}</h1>
           <ul className="mx-auto w-full columns-2 lg:columns-3 2xl:columns-4 items-start gap-4">
             {section.entries.map((card) => (
               <motion.div
