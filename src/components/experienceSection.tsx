@@ -1,6 +1,8 @@
 import { motion, useMotionTemplate, useMotionValue } from "motion/react";
 import { MouseEvent } from "react";
 import { type ExperienceEntry, experienceData } from "~/data/experience";
+import { AnimatedGroup } from "~/components/motion_primitives/animated-group";
+import ScatterText from "./ui/ScatterText";
 
 export default function ExperienceSection() {
   let mouseX = useMotionValue(0);
@@ -21,8 +23,11 @@ export default function ExperienceSection() {
           className="flex flex-col items-center w-full pb-24"
         >
           <div className="w-full max-w-screen-xl px-4">
-            <h1 className="mb-6 text-5xl">{section.title}</h1>
-            <div className="columns-1 md:columns-2 gap-4 space-y-4 w-full">
+            {section.title && (
+              <ScatterText text={section.title} />
+              // <h1 className="mb-6 text-5xl">{section.title}</h1>
+            )}
+            <AnimatedGroup className="columns-1 md:columns-2 gap-4 space-y-4 w-full">
               {section.entries.map((item: ExperienceEntry, index: number) => (
                 <div
                   key={index}
@@ -80,7 +85,7 @@ export default function ExperienceSection() {
                   </div>
                 </div>
               ))}
-            </div>
+            </AnimatedGroup>
           </div>
         </section>
       ))}

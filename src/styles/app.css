@@ -5,6 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-graffiti: "Urban", "graffiti"; 
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
@@ -67,9 +69,9 @@
     color-scheme: light dark;
   }
 
-  * {
+  /* * {
     @apply border-gray-200 dark:border-gray-800;
-  }
+  } */
 
   html,
   body {
@@ -82,33 +84,55 @@
   
 }
 
-:root {
-  --background: oklch(0.98 0.012 116.8);
-  --foreground: oklch(0.21 0.0312 120.04);
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(0 0% 3.9%);
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(0 0% 3.9%);
-  --primary: oklch(0.88 0.2326 125.05);
-  --primary-foreground: hsl(0 0% 98%);
-  --secondary: oklch(0.78 0.0987 182.12);
-  --secondary-foreground: hsl(0 0% 9%);
-  --muted: hsl(0 0% 96.1%);
-  --muted-foreground: hsl(0 0% 45.1%);
-  --accent: oklch(0.75 0.0821 300.79);
-  --accent-foreground: hsl(0 0% 9%);
-  --destructive: hsl(0 84.2% 60.2%);
-  --destructive-foreground: hsl(0 0% 98%);
-  --border: hsl(0 0% 89.8%);
-  --input: hsl(0 0% 89.8%);
-  --ring: hsl(0 0% 3.9%);
-  --chart-1: hsl(12 76% 61%);
-  --chart-2: hsl(173 58% 39%);
-  --chart-3: hsl(197 37% 24%);
-  --chart-4: hsl(43 74% 66%);
-  --chart-5: hsl(27 87% 67%);
-  --radius: 0.5rem;
+@layer base {
+  @font-face {
+    font-family: 'Geist';
+    src: url('../fonts/Geist-VariableFont.ttf') format('truetype-variations');
+    font-weight: 1 999;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Urban';
+    src: url('../fonts/Urban-Starblues.otf') format('opentype');
+    font-weight: 100;
+    font-display: swap;
+  }
+
+  :root {
+    --font-geist: 'Geist';
+    --background: oklch(0.98 0.012 116.8);
+    --foreground: oklch(0.31 0.2326 125.05);
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(0 0% 3.9%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(0 0% 3.9%);
+    --primary: oklch(0.88 0.2326 125.05);
+    --primary-foreground: hsl(0 0% 98%);
+    --secondary: oklch(0.78 0.0987 182.12);
+    --secondary-foreground: hsl(0 0% 9%);
+    --muted: hsl(0 0% 96.1%);
+    --muted-foreground: hsl(0 0% 45.1%);
+    --accent: oklch(0.75 0.0821 300.79);
+    --accent-foreground: hsl(0 0% 9%);
+    --destructive: hsl(0 84.2% 60.2%);
+    --destructive-foreground: hsl(0 0% 98%);
+    --border: hsl(0 0% 89.8%);
+    --input: hsl(0 0% 89.8%);
+    --ring: hsl(0 0% 3.9%);
+    --chart-1: hsl(12 76% 61%);
+    --chart-2: hsl(173 58% 39%);
+    --chart-3: hsl(197 37% 24%);
+    --chart-4: hsl(43 74% 66%);
+    --chart-5: hsl(27 87% 67%);
+    --radius: 0.5rem;
+  }
+
+  html {
+    font-family: var(--font-geist), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
 }
+
 .dark {
   --background: hsl(0 0% 3.9%);
   --foreground: hsl(0 0% 98%);
@@ -168,13 +192,13 @@
 
   @media (max-width: 640px) {
     h1 {
-      font-size: 2.9rem;
-    }
-    h2 {
       font-size: 2.5rem;
     }
+    h2 {
+      font-size: 2.1rem;
+    }
     h3 {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
     h4 {
       font-size: 1.6rem;

@@ -49,7 +49,11 @@ function Earth({
     offset: ["start end", "end start"],
   });
 
-  const rotationY = useTransform(scrollYProgress, [0, 1], [0, Math.PI * 0.48]);
+  const rotationY = useTransform(
+    scrollYProgress,
+    [0, 1.2],
+    [0, Math.PI * 0.49]
+  );
 
   return (
     <Canvas
