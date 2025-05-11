@@ -18,7 +18,6 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
     <>
       <section className="no-padding-bottom">
         <ScatterText text={title} className="pt-32 pb-20 text-center" />
-        {/* <h1 className="">{title}</h1> */}
         <ul className="mx-auto w-full columns-2 lg:columns-3 2xl:columns-4 items-start gap-4">
           {data.map((card) => (
             <motion.div
@@ -37,25 +36,24 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
                     className="h-auto w-full object-cover object-top"
                   />
                 </motion.div>
-
                 <ProgressiveBlur
                   blurIntensity={card.description ? 0.8 : 0}
                   className="h-[3rem] md:h-[5rem] absolute bottom-0 left-0 w-full"
                 />
-                <div
-                  className={`absolute inset-x-0 bottom-0 p-2 md:p-4 ${
-                    card.darkText ? "text-black" : "text-white"
-                  }`}
-                >
-                  {card.description && (
+                {card.description && (
+                  <div
+                    className={`absolute inset-x-0 bottom-0 p-2 md:p-4 ${
+                      card.darkText ? "text-black" : "text-white"
+                    }`}
+                  >
                     <motion.h5
                       layoutId={`title-${card.title}-${id}`}
                       className="text-base md:text-lg"
                     >
                       {card.title}
                     </motion.h5>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}

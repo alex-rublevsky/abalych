@@ -30,7 +30,10 @@ function Home() {
             className="object-contain w-full h-auto overflow-hidden rounded-2xl"
           />
 
-          <ScatterText text="Bebra, CEO of SWAG 2012 and founder of your mum" />
+          <ScatterText
+            text="Bebra, CEO of SWAG 2012 and founder of your mum"
+            className="w-full text-pretty"
+          />
           {/* <h2>
             Hi, my name is Kristina and I&apos;m CEO of bebra and founder of
             swag 2012

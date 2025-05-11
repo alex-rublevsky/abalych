@@ -82,7 +82,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="fixed inset-0 bg-background/20 backdrop-blur-lg h-full w-full z-[9999] "
+            className="fixed inset-0 bg-background/20 cursor-pointer backdrop-blur-lg h-full w-full z-[9999]"
             onClick={onClose}
           />
           <div className="fixed inset-0 flex md:grid md:place-items-center z-[10000]">
@@ -98,9 +98,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                 maxHeight: "100dvh",
               }}
             >
-              <div
-                className={`relative flex-shrink-0 overflow-hidden w-fit mx-auto`}
-              >
+              <div className="relative rounded-lg overflow-hidden flex-shrink-0 w-fit mx-auto">
                 <motion.button
                   key={`button-${active.title}-${id}`}
                   initial={{ opacity: 0 }}
@@ -112,10 +110,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                 >
                   <CloseIcon />
                 </motion.button>
-                <motion.div
-                  layoutId={`image-${active.title}-${id}`}
-                  className="relative w-fit"
-                >
+                <motion.div layoutId={`image-${active.title}-${id}`}>
                   <img
                     width={200}
                     height={200}
@@ -124,25 +119,25 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                     className="w-auto h-auto md:rounded-tr-lg md:rounded-tl-lg object-contain"
                     style={{ maxHeight: "75vh" }}
                   />
-                  <ProgressiveBlur
-                    blurIntensity={active.description ? 0.8 : 0}
-                    className="h-[3rem] md:h-[5rem] absolute bottom-0 left-0 w-full"
-                  />
-                  {active.description && (
-                    <div
-                      className={`absolute inset-x-0 bottom-0 p-4 ${
-                        active.darkText ? "text-black" : "text-white"
-                      }`}
-                    >
-                      <motion.h5
-                        layoutId={`title-${active.title}-${id}`}
-                        className="text-base md:text-lg"
-                      >
-                        {active.title}
-                      </motion.h5>
-                    </div>
-                  )}
                 </motion.div>
+                <ProgressiveBlur
+                  blurIntensity={active.description ? 0.8 : 0}
+                  className="h-[3rem] md:h-[5rem] absolute bottom-0 left-0 w-full"
+                />
+                {active.description && (
+                  <div
+                    className={`absolute inset-x-0 bottom-0 p-2 md:p-4 ${
+                      active.darkText ? "text-black" : "text-white"
+                    }`}
+                  >
+                    <motion.h5
+                      layoutId={`title-${active.title}-${id}`}
+                      className="text-base md:text-lg"
+                    >
+                      {active.title}
+                    </motion.h5>
+                  </div>
+                )}
               </div>
               {active.description && (
                 <motion.div
