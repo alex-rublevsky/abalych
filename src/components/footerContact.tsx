@@ -12,7 +12,11 @@ export default function FooterContact() {
           <h5 className="opacity-50 -translate-y-5 md:translate-y-0 lg:translate-y-10">
             Contact me
           </h5>
-          <AnimatedGroup className="flex gap-x-16 gap-y-6 flex-wrap md:gap-0 justify-center">
+          <AnimatedGroup
+            amount={0}
+            delay={0}
+            className="flex gap-x-16 gap-y-6 flex-wrap md:gap-0 justify-center"
+          >
             <FramerMagnetic>
               <a
                 className="p-0 md:p-12 lg:p-20 flex align-middle justify-center cursor-pointer group"

@@ -88,7 +88,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="overscroll-none">
+      <body className="overscroll-none bg-background text-foreground">
         {/* TODO: delete the routes the links below lead to */}
         {/* <div className="p-2 flex gap-2 text-lg">
           <Link

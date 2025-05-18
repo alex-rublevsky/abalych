@@ -11,7 +11,9 @@ import ParallaxGraffiti from "~/components/ui/parallaxGraffiti";
 import { FloatingPreview } from "~/components/ui/floating-preview";
 import { useViewportSize } from "~/hooks/use-viewport-size";
 import { mainGalleryData, stickerGalleryData } from "~/data/gallery";
-import ScatterText from "~/components/ui/ScatterText";
+import Loader from "~/components/ui/Loader";
+import HeroSection from "~/components/ui/HeroSection";
+import Pattern from "~/components/ui/Pattern";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -22,26 +24,21 @@ function Home() {
 
   return (
     <SmoothScroll>
-      <main className="">
-        <section className="h-screen grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-screen-2xl mx-auto">
-          <img
-            src="https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/portrait.jpg"
-            alt="Kristina's portrait"
-            className="object-contain w-full h-auto overflow-hidden rounded-2xl"
-          />
+      <main className="relative ">
+        {/* <Loader /> */}
 
-          <ScatterText
-            text="Bebra, CEO of SWAG 2012 and founder of your mum"
-            className="w-full text-pretty"
-          />
-          {/* <h2>
-            Hi, my name is Kristina and I&apos;m CEO of bebra and founder of
-            swag 2012
-          </h2> */}
-        </section>
+        <HeroSection isMobile={isMobile} />
 
         <ExperienceSection />
-        <ParallaxGraffiti />
+        {isMobile ? (
+          <img
+            className="h-[50vw] w-full"
+            src="https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/graffiti-wall.jpg"
+          />
+        ) : (
+          <ParallaxGraffiti />
+        )}
+
         {isMobile ? (
           <Gallery data={stickerGalleryData} title="Stickers" />
         ) : (
@@ -50,6 +47,7 @@ function Home() {
         <Gallery data={mainGalleryData} />
 
         <AbalychWorldwide />
+
         <FooterContact />
       </main>
     </SmoothScroll>

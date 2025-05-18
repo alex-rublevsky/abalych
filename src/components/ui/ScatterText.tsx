@@ -2,19 +2,27 @@ import { animate, hover } from "motion";
 import { splitText } from "motion-plus";
 import { useMotionValue } from "motion/react";
 import { useEffect, useRef } from "react";
+import { useViewportSize } from "~/hooks/use-viewport-size";
 
 interface ScatterTextProps {
   text: string;
   className?: string;
+  extraLarge?: boolean;
 }
 
-export default function ScatterText({ text, className }: ScatterTextProps) {
+export default function ScatterText({
+  text,
+  className,
+  extraLarge,
+}: ScatterTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const velocityX = useMotionValue(0);
   const velocityY = useMotionValue(0);
   const prevEvent = useRef(0);
+  const { isMobile } = useViewportSize();
 
   useEffect(() => {
+    if (isMobile) return;
     if (!containerRef.current) return;
 
     const { chars } = splitText(containerRef.current.querySelector(".h1")!);
@@ -51,11 +59,25 @@ export default function ScatterText({ text, className }: ScatterTextProps) {
     return () => {
       document.removeEventListener("pointermove", handlePointerMove);
     };
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) {
+    return (
+      <h1
+        className={`${className || ""} font-graffiti tracking-widest 2xl:tracking-wider leading-13 md:leading-16 xl:leading-28  ${extraLarge ? "sm:text-6xl md:text-7xl lg:text-7xl xl:text-9xl" : "text-3xl lg:text-4xl xl:text-6xl"}`}
+      >
+        {text}
+      </h1>
+    );
+  }
 
   return (
-    <div className={` ${className || ""}`} ref={containerRef}>
-      <h1 className="h1 font-graffiti tracking-wider leading-28">{text}</h1>
+    <div className={`z-20 ${className || ""}`} ref={containerRef}>
+      <h1
+        className={`h1 font-graffiti tracking-widest 2xl:tracking-wider leading-13 md:leading-16 xl:leading-28 ${extraLarge ? "sm:text-6xl md:text-7xl lg:text-7xl xl:text-9xl" : "text-3xl lg:text-4xl xl:text-6xl"}`}
+      >
+        {text}
+      </h1>
       <Stylesheet />
     </div>
   );
@@ -69,9 +91,9 @@ function Stylesheet() {
                 justify-content: center;
                 align-items: center;
                 width: 100%;
-                max-width: 75ch;
+               
                 text-align: left;
-                color: #0f1115;
+                
             }
 
             .split-char {

@@ -20,7 +20,7 @@
     "routes": [
       {
         "custom_domain": true,
-        "pattern": "abalych.rublevsky.studio",
+        "pattern": "abaly.ch",
       }
     ],
   }

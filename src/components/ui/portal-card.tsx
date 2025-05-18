@@ -110,16 +110,17 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                 >
                   <CloseIcon />
                 </motion.button>
-                <motion.div layoutId={`image-${active.title}-${id}`}>
+                <div //layoutId={`image-${active.title}-${id}`}
+                >
                   <img
-                    width={200}
-                    height={200}
+                    //width={200}
+                    //height={200}
                     src={`https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/${active.image}`}
                     alt={active.title}
-                    className="w-auto h-auto md:rounded-tr-lg md:rounded-tl-lg object-contain"
+                    className={`w-auto h-auto md:rounded-tr-lg md:rounded-tl-lg object-contain  [view-transition-name:card-image-${active.image}]`}
                     style={{ maxHeight: "75vh" }}
                   />
-                </motion.div>
+                </div>
                 <ProgressiveBlur
                   blurIntensity={active.description ? 0.8 : 0}
                   className="h-[3rem] md:h-[5rem] absolute bottom-0 left-0 w-full"

@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useId, useState } from "react";
 import { motion, stagger, useAnimate } from "motion/react";
 import Floating, { FloatingElement } from "./parallax-floating";
@@ -37,7 +35,7 @@ export const FloatingPreview = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.88, delay: 1.5 }}
         >
-          <ScatterText text="Stickers!" />
+          <ScatterText text="sticker art!" />
           {/* <h1 className="text-5xl md:text-7xl z-50 text-black font-calendas">
             Stickers
           </h1> */}

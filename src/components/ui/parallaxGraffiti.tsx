@@ -27,7 +27,7 @@ export default function ParallaxGraffiti({
   return (
     <div
       ref={container}
-      className="relative flex items-center justify-center overflow-hidden h-[50vw] md:h-[50vw] md:max-h-[80dvh]"
+      className="relative flex items-center justify-center overflow-hidden h-[50vw] md:h-[50vw] md:max-h-[80dvh] z-30"
       style={{
         //height,
         clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",

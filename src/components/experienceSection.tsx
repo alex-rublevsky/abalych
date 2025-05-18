@@ -20,22 +20,23 @@ export default function ExperienceSection() {
       {experienceData.sections.map((section, sectionIndex) => (
         <section
           key={sectionIndex}
-          className="flex flex-col items-center w-full pb-24"
+          className="flex flex-col items-center w-full pb-24 relative z-30 "
         >
-          <div className="w-full max-w-screen-xl px-4">
+          <div className="w-full max-w-screen-xl px-4 z-30 ">
             {section.title && (
               <ScatterText text={section.title} />
               // <h1 className="mb-6 text-5xl">{section.title}</h1>
             )}
-            <AnimatedGroup className="columns-1 md:columns-2 gap-4 space-y-4 w-full">
+
+            <AnimatedGroup className="columns-1 md:columns-2 gap-4 space-y-4 w-full z-30 ">
               {section.entries.map((item: ExperienceEntry, index: number) => (
                 <div
                   key={index}
-                  className="group relative w-full rounded-xl border border-primary/30 bg-primary/5 px-8 py-12 mb-4 break-inside-avoid"
+                  className="z-30 group relative w-full rounded-xl overflow-hidden border border-primary/30 bg-background/30  px-8 py-12 mb-4 break-inside-avoid"
                   onMouseMove={handleMouseMove}
                 >
                   <motion.div
-                    className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+                    className="pointer-events-none  absolute -inset-px  opacity-0 transition  duration-300 group-hover:opacity-100"
                     style={{
                       background: useMotionTemplate`
                       radial-gradient(
@@ -46,7 +47,8 @@ export default function ExperienceSection() {
                     `,
                     }}
                   />
-                  <div className="relative z-10">
+
+                  <div className="relative z-10  ">
                     {item.logo && (
                       <img
                         src={`https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/${item.logo}`}
