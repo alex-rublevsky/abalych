@@ -17,7 +17,7 @@ export const mainGalleryData: CardData[] = [
   },
   {
     image: "chickens.jpg",
-    title: "Chickens",
+    title: "Friends",
      showTitle: true
   },
   {
@@ -28,7 +28,7 @@ export const mainGalleryData: CardData[] = [
   {
     image: "leafs.jpg",
     title: "Leafs",
-     showTitle: true
+     showTitle: false
   },
   {
     image: "cat-2.jpg",
@@ -69,8 +69,8 @@ export const mainGalleryData: CardData[] = [
   },
   {
     image: "uteshali.jpg",
-    title: "Prikol",
-     showTitle: true
+    title: "Heart",
+    showTitle: false
   },
   {
     image: "vesna.jpg",

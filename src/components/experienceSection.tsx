@@ -24,19 +24,18 @@ export default function ExperienceSection() {
         >
           <div className="w-full max-w-screen-xl px-4 z-30 ">
             {section.title && (
-              <ScatterText text={section.title} className="pb-8 pt-20" />
-              // <h1 className="mb-6 text-5xl">{section.title}</h1>
+              <ScatterText text={section.title} className="pb-8 pt-20 " />
             )}
 
             <AnimatedGroup className="columns-1 md:columns-2 gap-4 space-y-4 w-full z-30 ">
               {section.entries.map((item: ExperienceEntry, index: number) => (
                 <div
                   key={index}
-                  className="z-30 group relative w-full rounded-xl overflow-hidden border border-primary/30 bg-background/30  px-8 py-12 mb-4 break-inside-avoid"
+                  className="bg-background z-[9999] group relative w-full rounded-xl overflow-hidden border-1 border-primary/50 px-8 py-12 mb-4 break-inside-avoid"
                   onMouseMove={handleMouseMove}
                 >
                   <motion.div
-                    className="pointer-events-none  absolute -inset-px  opacity-0 transition  duration-300 group-hover:opacity-100"
+                    className="pointer-events-none  absolute -inset-px  opacity-0 transition  duration-300 group-hover:opacity-100 "
                     style={{
                       background: useMotionTemplate`
                       radial-gradient(

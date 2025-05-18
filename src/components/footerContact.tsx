@@ -4,7 +4,7 @@ import { AnimatedGroup } from "./motion_primitives/animated-group";
 export default function FooterContact() {
   return (
     <section
-      className="w-full bg-accent/20 relative h-[60dvh] md:h-[80dvh] no-padding"
+      className="w-full bg-primary/100 relative h-[60dvh] md:h-[80dvh] no-padding z-[100]"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       <div className="fixed bottom-0 h-[60dvh] md:h-[80dvh] w-full flex flex-col items-center justify-end">

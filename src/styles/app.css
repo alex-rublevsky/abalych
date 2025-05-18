@@ -101,7 +101,7 @@
 
   :root {
     --font-geist: 'Geist';
-    --background: oklch(0.98 0.012 116.8);
+    --background: oklch(0.99 0.036 118.88);
     --foreground: oklch(0.31 0.2326 125.05);
     --card: hsl(0 0% 100%);
     --card-foreground: hsl(0 0% 3.9%);
