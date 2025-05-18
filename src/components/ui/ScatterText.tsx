@@ -61,10 +61,18 @@ export default function ScatterText({
     };
   }, [isMobile]);
 
+  const sizes = extraLarge
+    ? "text-6xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-9xl"
+    : "text-4xl sm:text-5xl lg:text-6xl xl:text-6xl";
+
+  const trackingLeading = extraLarge
+    ? "tracking-widest 2xl:tracking-wider leading-20 md:leading-16 xl:leading-28 "
+    : "tracking-widest 2xl:tracking-wider leading-13 md:leading-16 xl:leading-28";
+
   if (isMobile) {
     return (
       <h1
-        className={`${className || ""} font-graffiti tracking-widest 2xl:tracking-wider leading-13 md:leading-16 xl:leading-28  ${extraLarge ? "sm:text-6xl md:text-7xl lg:text-7xl xl:text-9xl" : "text-3xl lg:text-4xl xl:text-6xl"}`}
+        className={`${className || ""} font-graffiti ${trackingLeading} ${sizes}`}
       >
         {text}
       </h1>
@@ -73,11 +81,7 @@ export default function ScatterText({
 
   return (
     <div className={`z-20 ${className || ""}`} ref={containerRef}>
-      <h1
-        className={`h1 font-graffiti tracking-widest 2xl:tracking-wider leading-13 md:leading-16 xl:leading-28 ${extraLarge ? "sm:text-6xl md:text-7xl lg:text-7xl xl:text-9xl" : "text-3xl lg:text-4xl xl:text-6xl"}`}
-      >
-        {text}
-      </h1>
+      <h1 className={`h1 font-graffiti ${trackingLeading} ${sizes}`}>{text}</h1>
       <Stylesheet />
     </div>
   );

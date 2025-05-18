@@ -24,7 +24,7 @@ export default function ExperienceSection() {
         >
           <div className="w-full max-w-screen-xl px-4 z-30 ">
             {section.title && (
-              <ScatterText text={section.title} />
+              <ScatterText text={section.title} className="pb-8 pt-20" />
               // <h1 className="mb-6 text-5xl">{section.title}</h1>
             )}
 

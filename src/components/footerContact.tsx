@@ -15,7 +15,7 @@ export default function FooterContact() {
           <AnimatedGroup
             amount={0}
             delay={0}
-            className="flex gap-x-16 gap-y-6 flex-wrap md:gap-0 justify-center"
+            className=" gap-x-16  grid grid-cols-2 gap-y-10  sm:gap-y-6 sm:flex sm:flex-wrap md:gap-0 justify-center"
           >
             <FramerMagnetic>
               <a

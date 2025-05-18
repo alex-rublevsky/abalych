@@ -125,7 +125,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                   blurIntensity={active.description ? 0.8 : 0}
                   className="h-[3rem] md:h-[5rem] absolute bottom-0 left-0 w-full"
                 />
-                {active.description && (
+                {active.title && active.showTitle && (
                   <div
                     className={`absolute inset-x-0 bottom-0 p-2 md:p-4 ${
                       active.darkText ? "text-black" : "text-white"

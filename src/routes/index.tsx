@@ -1,3 +1,10 @@
+// TODO: finalize  loader
+// TODO: add pattern
+//          - backdrop blur for experience cards
+// TODO:
+//
+
+// secondary:
 // TODO: subsections for professional experience, education, certificates
 // TODO: 3d model of amoeba
 

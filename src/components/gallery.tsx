@@ -18,50 +18,47 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
   return (
     <>
       <section className="no-padding-bottom">
-        <ScatterText text={title} className="pt-32 pb-20 text-center" />
+        <ScatterText
+          text={title}
+          className="pt-32 pb-20 text-center"
+          //extraLarge={true}
+        />
         <ul className="mx-auto w-full columns-2 lg:columns-3 2xl:columns-4 items-start gap-4">
           {data.map((card) => (
-            <Link
-              to={"/"}
-              //layoutId={`card-${card.title}-${id}`}
+            <motion.div
+              layoutId={`card-${card.title}-${id}`}
               key={card.title}
-              viewTransition={{
-                types: [`card-image`],
-              }}
               onClick={() => setActive(card)}
               className="pb-4 flex flex-col hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer break-inside-avoid"
             >
               <div className="relative rounded-lg overflow-hidden">
-                <div>
+                <motion.div layoutId={`image-${card.title}-${id}`}>
                   <img
-                    //width={100}
-                    //height={100}
                     alt={card.title}
                     src={`https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/${card.image}`}
                     className={`h-auto w-full object-cover object-top [view-transition-name:card-image-${card.image}]`}
                   />
-                </div>
+                </motion.div>
                 <ProgressiveBlur
                   blurIntensity={card.description ? 0.8 : 0}
                   className="h-[3rem] md:h-[5rem] absolute bottom-0 left-0 w-full"
                 />
-                {card.description && (
+                {card.title && card.showTitle && (
                   <div
                     className={`absolute inset-x-0 bottom-0 p-2 md:p-4 ${
                       card.darkText ? "text-black" : "text-white"
                     }`}
                   >
-                    <h5
-                      //layoutId={`title-${card.title}-${id}`}
-
+                    <motion.h5
+                      layoutId={`title-${card.title}-${id}`}
                       className="text-base md:text-lg [view-transition-name:card-title]"
                     >
                       {card.title}
-                    </h5>
+                    </motion.h5>
                   </div>
                 )}
               </div>
-            </Link>
+            </motion.div>
           ))}
         </ul>
       </section>
