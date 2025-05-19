@@ -1,4 +1,4 @@
-import { type ReactNode } from "react"
+
 
 export interface CardData {
   image: string
@@ -78,6 +78,13 @@ export const mainGalleryData: CardData[] = [
      showTitle: true,
     darkText: true
 
+  },
+  {
+    image: "les.webp",
+    title: "Les",
+     showTitle: false,
+   
+
   }
 ]
 
@@ -123,6 +130,11 @@ export const stickerGalleryData: CardData[] = [
   {
     image: "hiphop-sticker.jpg",
     title: "hiphop-sticker",
+    showTitle: false
+  },
+   {
+    image: "vision.webp",
+    title: "vision",
     showTitle: false
   }
 ]

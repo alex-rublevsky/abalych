@@ -8,7 +8,12 @@ export default function FooterContact() {
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       <div className="fixed bottom-0 h-[60dvh] md:h-[80dvh] w-full flex flex-col items-center justify-end">
-        <div className="flex flex-col items-center justify-center gap-0  h-full pt-42 ">
+        <img
+          src="https://abalych-assets.rublevsky.studio/graffiti.png"
+          alt="graffiti"
+          className="absolute  left-1/2 -translate-x-1/2  top-00 w-full max-h-[50dvh] object-contain  mix-blend-difference z-[999]"
+        />
+        <div className="flex flex-col items-center justify-center gap-0 h-full pt-42 relative z-10">
           <h5 className="opacity-50 -translate-y-5 md:translate-y-0 lg:translate-y-10">
             Contact me
           </h5>
@@ -77,10 +82,11 @@ export default function FooterContact() {
             </FramerMagnetic>
           </AnimatedGroup>
         </div>
+
         <img
-          src="https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/graffiti.png"
-          alt="graffiti"
-          className="w-full max-h-[50dvh] object-contain"
+          src="https://abalych-assets.rublevsky.studio/forest-portrait.jpg"
+          alt="forest portrait"
+          className="absolute inset-0 w-full h-full object-cover "
         />
       </div>
     </section>

@@ -46,7 +46,7 @@ export const FloatingPreview = () => {
           easingFactor={0.05}
           className="z-99 pointer-events-none"
         >
-          {stickerGalleryData.slice(0, 8).map((card, index) => (
+          {stickerGalleryData.slice(0, 9).map((card, index) => (
             <FloatingElement
               key={card.title}
               depth={getDepthValue(index)}
@@ -115,6 +115,7 @@ function getPositionClass(index: number): string {
     "top-[70%] right-[2%]",
     "bottom-[0%] left-[60%]",
     "top-[20%] right-[10%]",
+    "bottom-[0%] left-[40%]",
   ];
   return positions[index] || "";
 }
@@ -130,6 +131,7 @@ function getSizeClass(index: number): string {
     "w-28 h-auto sm:w-42 md:w-38 lg:w-48 xl:w-58",
     "w-28 h-auto sm:w-42 md:w-38 lg:w-48 xl:w-64",
     "w-28 h-auto sm:w-42 md:w-38 lg:w-48 xl:w-64",
+    "w-28 h-auto sm:w-42 md:w-38 lg:w-64",
     "w-28 h-auto sm:w-42 md:w-38 lg:w-64",
   ];
   return `${sizes[index]} ${baseClasses}`;

@@ -29,7 +29,7 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
               layoutId={`card-${card.title}-${id}`}
               key={card.title}
               onClick={() => setActive(card)}
-              className="pb-4 flex flex-col hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer break-inside-avoid"
+              className="mb-4 flex flex-col rounded-xl cursor-pointer break-inside-avoid"
             >
               <div className="relative rounded-lg overflow-hidden">
                 <motion.div layoutId={`image-${card.title}-${id}`}>
@@ -40,7 +40,7 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
                   />
                 </motion.div>
                 <ProgressiveBlur
-                  blurIntensity={card.description ? 0.8 : 0}
+                  blurIntensity={card.showTitle ? 0.8 : 0}
                   className="h-[3rem] md:h-[5rem] absolute bottom-0 left-0 w-full"
                 />
                 {card.title && card.showTitle && (

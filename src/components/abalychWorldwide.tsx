@@ -19,6 +19,11 @@ export default function AbalychWorldwide() {
       >
         <Earth parentRef={sectionRef} />
       </div>
+      {/* <img
+        src="https://abalych-assets.rublevsky.studio/graffiti-dark.webp"
+        alt="graffiti"
+        className="absolute  left-1/2 -translate-x-1/2  -bottom-70 w-full max-h-[50dvh] object-contain  mix-blend-difference z-[999]"
+      /> */}
     </section>
   );
 }
