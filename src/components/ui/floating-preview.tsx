@@ -35,7 +35,7 @@ export const FloatingPreview = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.88, delay: 1.5 }}
         >
-          <ScatterText text="sticker art!" />
+          <ScatterText text="sticker art!" className="z-[99999]" />
           {/* <h1 className="text-5xl md:text-7xl z-50 text-black font-calendas">
             Stickers
           </h1> */}
@@ -46,7 +46,7 @@ export const FloatingPreview = () => {
           easingFactor={0.05}
           className="z-99 pointer-events-none"
         >
-          {stickerGalleryData.slice(0, 9).map((card, index) => (
+          {stickerGalleryData.slice(0, 11).map((card, index) => (
             <FloatingElement
               key={card.title}
               depth={getDepthValue(index)}
@@ -64,6 +64,7 @@ export const FloatingPreview = () => {
                   className={getSizeClass(index)}
                   onClick={() => setActive(card)}
                 />
+                <p>{index}</p>
                 {active?.title === card.title && active.description && (
                   <motion.div
                     layoutId={`title-${card.title}-${id}`}
@@ -93,13 +94,19 @@ function getDepthValue(index: number): number {
     case 3:
       return 1;
     case 4:
-      return 2;
+      return 2.8;
     case 5:
       return 1;
     case 6:
-      return 3;
+      return 0.4;
     case 7:
       return 0.8;
+    case 8:
+      return 1.5;
+    case 9:
+      return 2.4;
+    case 10:
+      return 2;
     default:
       return 1;
   }
@@ -115,7 +122,9 @@ function getPositionClass(index: number): string {
     "top-[70%] right-[2%]",
     "bottom-[0%] left-[60%]",
     "top-[20%] right-[10%]",
-    "bottom-[0%] left-[40%]",
+    "bottom-[0%] left-[30%]",
+    "bottom-[30%] right-[20%]",
+    "top-[3%] right-[4%]",
   ];
   return positions[index] || "";
 }
@@ -131,6 +140,8 @@ function getSizeClass(index: number): string {
     "w-28 h-auto sm:w-42 md:w-38 lg:w-48 xl:w-58",
     "w-28 h-auto sm:w-42 md:w-38 lg:w-48 xl:w-64",
     "w-28 h-auto sm:w-42 md:w-38 lg:w-48 xl:w-64",
+    "w-28 h-auto sm:w-42 md:w-38 lg:w-64",
+    "w-28 h-auto sm:w-42 md:w-38 lg:w-64",
     "w-28 h-auto sm:w-42 md:w-38 lg:w-64",
     "w-28 h-auto sm:w-42 md:w-38 lg:w-64",
   ];

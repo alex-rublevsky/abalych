@@ -136,5 +136,17 @@ export const stickerGalleryData: CardData[] = [
     image: "vision.webp",
     title: "vision",
     showTitle: false
+  },
+  {
+    image: "river-sticker.webp",
+    title: "river",
+    showTitle: false
+  },
+  {
+    image: "graffiti-bark-abalych-1.jpg",
+    title: "graffiti-bark-abalych-1",
+    showTitle: false
   }
+ 
+
 ]
