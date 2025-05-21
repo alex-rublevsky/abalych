@@ -72,7 +72,7 @@ export default function ScatterText({
   if (isMobile) {
     return (
       <h1
-        className={`${className || ""} font-graffiti ${trackingLeading} ${sizes}`}
+        className={`${className || ""} font-graffiti text-foreground ${trackingLeading} ${sizes}`}
       >
         {text}
       </h1>
@@ -81,7 +81,11 @@ export default function ScatterText({
 
   return (
     <div className={`z-20 ${className || ""}`} ref={containerRef}>
-      <h1 className={`h1 font-graffiti ${trackingLeading} ${sizes}`}>{text}</h1>
+      <h1
+        className={`h1 text-foreground font-graffiti ${trackingLeading} ${sizes}`}
+      >
+        {text}
+      </h1>
       <Stylesheet />
     </div>
   );
