@@ -26,7 +26,7 @@ export const FloatingPreview = () => {
   return (
     <div className="relative my-32">
       <div
-        className="flex w-full min-h-[800px] md:h-screen justify-center items-center "
+        className="flex w-full min-h-[65rem] md:h-screen justify-center items-center "
         ref={scope}
       >
         <motion.div
@@ -53,13 +53,14 @@ export const FloatingPreview = () => {
               className={getPositionClass(index) + ` pointer-events-auto`}
               layoutId={`card-${card.title}-${id}`}
             >
+              <div>{index}</div>
               <motion.div
                 layoutId={`image-${card.title}-${id}`}
                 className="relative"
               >
                 <motion.img
                   initial={{ opacity: 0 }}
-                  src={`https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/${card.image}`}
+                  src={`https://abalych-assets.rublevsky.studio/${card.image}`}
                   alt={card.title}
                   className={getSizeClass(index)}
                   onClick={() => setActive(card)}
@@ -114,17 +115,17 @@ function getDepthValue(index: number): number {
 
 function getPositionClass(index: number): string {
   const positions = [
-    "top-[0%] left-[11%]",
-    "top-[20%] md:top-[10%] left-[32%]",
-    "top-[2%] left-[53%]",
+    "top-[7%] left-[5%]",
+    "top-[20%] md:top-[0%] left-[27%]",
+    "top-[5%] left-[53%]",
     "top-[30%] md:top-[40%] left-[2%]",
-    "bottom-[5%] left-[20%]",
+    "bottom-[5%] left-[5%]",
     "top-[70%] right-[2%]",
-    "bottom-[0%] left-[60%]",
-    "top-[20%] right-[10%]",
+    "bottom-[0%] left-[52%] lg:left-[60%]",
+    "top-[25%] lg:top-[20%] right-[10%]",
     "bottom-[0%] left-[30%]",
-    "bottom-[30%] right-[20%]",
-    "top-[3%] right-[4%]",
+    "bottom-[30%] right-[2%]",
+    "top-[7%] right-[3%]",
   ];
   return positions[index] || "";
 }
@@ -133,17 +134,17 @@ function getSizeClass(index: number): string {
   const baseClasses =
     "object-cover hover:scale-105 duration-200 cursor-pointer transition-transform rounded-lg";
   const sizes = [
-    "w-28 h-auto md:w-38 lg:w-48 xl:w-52",
-    "w-28 h-auto md:w-38 lg:w-48 xl:w-56",
-    "w-28 h-auto sm:w-32 md:w-38 lg:w-48 xl:w-64",
-    "w-28 h-auto sm:w-42 md:w-38 lg:w-48 xl:w-52",
-    "w-28 h-auto sm:w-42 md:w-38 lg:w-48 xl:w-58",
-    "w-28 h-auto sm:w-42 md:w-38 lg:w-48 xl:w-64",
-    "w-28 h-auto sm:w-42 md:w-38 lg:w-48 xl:w-64",
-    "w-28 h-auto sm:w-42 md:w-38 lg:w-64",
-    "w-28 h-auto sm:w-42 md:w-38 lg:w-64",
-    "w-28 h-auto sm:w-42 md:w-38 lg:w-64",
-    "w-28 h-auto sm:w-42 md:w-38 lg:w-64",
+    "w-28 h-auto md:w-44 lg:w-48 xl:w-52",
+    "w-28 h-auto md:w-48 lg:w-58 xl:w-68",
+    "w-28 h-auto sm:w-32 md:w-50 lg:w-58 xl:w-68",
+    "w-28 h-auto sm:w-42 md:w-58 lg:w-58 xl:w-62",
+    "w-28 h-auto sm:w-42 md:w-62 lg:w-78 xl:w-78",
+    "w-28 h-auto sm:w-42 md:w-58 lg:w-68 xl:w-78",
+    "w-28 h-auto sm:w-42 md:w-54 lg:w-54 xl:w-64",
+    "w-28 h-auto sm:w-42 md:w-54 lg:w-64 xl:w-78",
+    "w-28 h-auto sm:w-42 md:w-52 lg:w-64",
+    "w-28 h-auto sm:w-42 md:w-54 lg:w-64",
+    "w-28 h-auto sm:w-42 md:w-42 lg:w-64",
   ];
   return `${sizes[index]} ${baseClasses}`;
 }
