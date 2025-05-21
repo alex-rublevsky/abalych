@@ -29,9 +29,9 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
               layoutId={`card-${card.title}-${id}`}
               key={card.title}
               onClick={() => setActive(card)}
-              className="mb-4 flex flex-col rounded-xl cursor-pointer break-inside-avoid"
+              className="mb-4 flex flex-col  cursor-pointer break-inside-avoid"
             >
-              <div className="relative rounded-lg overflow-hidden">
+              <div className="relative rounded-[1.3rem] overflow-hidden">
                 <motion.div layoutId={`image-${card.title}-${id}`}>
                   <img
                     alt={card.title}
@@ -39,19 +39,16 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
                     className={`h-auto w-full object-cover object-top [view-transition-name:card-image-${card.image}]`}
                   />
                 </motion.div>
-                <ProgressiveBlur
-                  blurIntensity={card.showTitle ? 0.8 : 0}
-                  className="h-[3rem] md:h-[5rem] absolute bottom-0 left-0 w-full"
-                />
+                <div className="h-[3rem] md:h-[5rem] absolute bottom-0 left-0 w-full" />
                 {card.title && card.showTitle && (
                   <div
-                    className={`absolute inset-x-0 bottom-0 p-2 md:p-4 ${
+                    className={`absolute inset-x-0 bottom-0 p-2 md:p-2 ${
                       card.darkText ? "text-black" : "text-white"
                     }`}
                   >
                     <motion.h5
                       layoutId={`title-${card.title}-${id}`}
-                      className="text-base md:text-lg [view-transition-name:card-title]"
+                      className="pt-2 pb-2 px-4 backdrop-blur-sm w-fit rounded-[0.8rem] overflow-hidden text-base [view-transition-name:card-title]"
                     >
                       {card.title}
                     </motion.h5>

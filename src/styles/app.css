@@ -8,8 +8,8 @@
   --font-graffiti: "Urban", "graffiti"; 
 
   --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 0.5rem);
+  --radius-sm: calc(var(--radius) - 1rem);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -101,7 +101,7 @@
 
   :root {
     --font-geist: 'Geist';
-    --background: oklch(0.99 0.036 118.88);
+    --background: oklch(0.9811 0.012 116.8);
     --foreground: oklch(0.31 0.2326 125.05);
     --card: hsl(0 0% 100%);
     --card-foreground: hsl(0 0% 3.9%);
@@ -125,7 +125,7 @@
     --chart-3: hsl(197 37% 24%);
     --chart-4: hsl(43 74% 66%);
     --chart-5: hsl(27 87% 67%);
-    --radius: 0.5rem;
+    --radius: 1rem;
   }
 
   html {
