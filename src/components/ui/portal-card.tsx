@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { createPortal } from "react-dom";
 import { type CardData } from "~/data/gallery";
-import { ProgressiveBlur } from "./progressive-blur";
 import { useOutsideClick } from "~/hooks/use-outside-click";
 import Lenis from "lenis";
 
@@ -89,7 +88,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className={`w-full md:w-fit md:max-w-2xl mx-auto flex flex-col md:bg-white md:dark:bg-neutral-900 md:rounded-3xl overflow-hidden ${
+              className={`w-full md:w-fit md:max-w-[95vw] mx-auto flex flex-col md:bg-white md:dark:bg-neutral-900 md:rounded-3xl overflow-hidden ${
                 active.description
                   ? "h-[100dvh]"
                   : "h-screen items-center justify-center"
@@ -115,7 +114,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                     src={`https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/${active.image}`}
                     alt={active.title}
                     className={`w-auto h-auto md:rounded-tr-lg md:rounded-tl-lg object-contain [view-transition-name:card-image-${active.image}]`}
-                    style={{ maxHeight: "75vh" }}
+                    style={{ maxHeight: "95dvh" }}
                   />
                 </motion.div>
                 <div className="h-[3rem] md:h-[5rem] absolute bottom-0 left-0 w-full" />
@@ -139,7 +138,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.4 }}
-                  className="p-4 bg-white dark:bg-neutral-900 overflow-y-auto md:max-h-[35vh] flex-1 md:flex-initial w-full"
+                  className="p-4 bg-white dark:bg-neutral-900 overflow-y-auto md:max-h-[95dvh] flex-1 md:flex-initial w-full"
                 >
                   <p className="text-md">{active.description}</p>
                 </motion.div>
