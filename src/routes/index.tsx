@@ -38,14 +38,8 @@ function Home() {
         <HeroSection isMobile={isMobile} />
 
         <ExperienceSection />
-        {isMobile ? (
-          <img
-            className="h-[50vw] w-full"
-            src="https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/graffiti-wall.jpg"
-          />
-        ) : (
-          <ParallaxGraffiti />
-        )}
+
+        <ParallaxGraffiti isMobile={isMobile} />
 
         {isMobile ? (
           <Gallery data={stickerGalleryData} title="Stickers" />

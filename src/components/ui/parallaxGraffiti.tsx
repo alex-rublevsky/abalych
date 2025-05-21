@@ -4,11 +4,13 @@ import { useRef } from "react";
 interface ParallaxGraffitiProps {
   //height?: string;
   parallaxStrength?: number;
+  isMobile?: boolean;
 }
 
 export default function ParallaxGraffiti({
   //height = "50vw",
   parallaxStrength = 25,
+  isMobile,
 }: ParallaxGraffitiProps) {
   const container = useRef<HTMLDivElement>(null);
 
@@ -24,7 +26,14 @@ export default function ParallaxGraffiti({
     [`-${parallaxStrength}%`, `${parallaxStrength}%`]
   );
 
-  return (
+  return isMobile ? (
+    <div className="z-[999]">
+      <img
+        className="h-[50vw] w-full z-[999] relative"
+        src="https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/graffiti-wall.jpg"
+      />
+    </div>
+  ) : (
     <div
       ref={container}
       className="relative flex items-center justify-center overflow-hidden h-[50vw] md:h-[50vw] md:max-h-[80dvh] z-30"
