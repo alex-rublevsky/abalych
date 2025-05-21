@@ -122,7 +122,7 @@ function getPositionClass(index: number): string {
     "bottom-[5%] left-[5%]",
     "top-[70%] right-[2%]",
     "bottom-[0%] left-[52%] lg:left-[60%]",
-    "top-[25%] lg:top-[20%] right-[10%]",
+    "top-[25%] lg:top-[24%] right-[14%]",
     "bottom-[0%] left-[30%]",
     "bottom-[30%] right-[2%]",
     "top-[7%] right-[3%]",
@@ -134,17 +134,17 @@ function getSizeClass(index: number): string {
   const baseClasses =
     "object-cover hover:scale-105 duration-200 cursor-pointer transition-transform rounded-lg";
   const sizes = [
-    "w-28 h-auto md:w-44 lg:w-48 xl:w-52",
+    "w-28 h-auto md:w-44 lg:w-48 xl:w-52 2xl:w-72",
     "w-28 h-auto md:w-48 lg:w-58 xl:w-68",
-    "w-28 h-auto sm:w-32 md:w-50 lg:w-58 xl:w-68",
-    "w-28 h-auto sm:w-42 md:w-58 lg:w-58 xl:w-62",
-    "w-28 h-auto sm:w-42 md:w-62 lg:w-78 xl:w-78",
-    "w-28 h-auto sm:w-42 md:w-58 lg:w-68 xl:w-78",
-    "w-28 h-auto sm:w-42 md:w-54 lg:w-54 xl:w-64",
-    "w-28 h-auto sm:w-42 md:w-54 lg:w-64 xl:w-78",
-    "w-28 h-auto sm:w-42 md:w-52 lg:w-64",
-    "w-28 h-auto sm:w-42 md:w-54 lg:w-64",
-    "w-28 h-auto sm:w-42 md:w-42 lg:w-64",
+    "w-28 h-auto sm:w-32 md:w-50 lg:w-58 xl:w-68 2xl:w-86",
+    "w-28 h-auto sm:w-42 md:w-58 lg:w-58 xl:w-62 2xl:w-82",
+    "w-28 h-auto sm:w-42 md:w-62 lg:w-78 xl:w-78 2xl:w-82",
+    "w-28 h-auto sm:w-42 md:w-58 lg:w-68 xl:w-78 2xl:w-82",
+    "w-28 h-auto sm:w-42 md:w-54 lg:w-54 xl:w-64 2xl:w-92",
+    "w-28 h-auto sm:w-42 md:w-54 lg:w-64 xl:w-78 2xl:w-82",
+    "w-28 h-auto sm:w-42 md:w-52 lg:w-64 2xl:w-92",
+    "w-28 h-auto sm:w-42 md:w-54 lg:w-64 2xl:w-72",
+    "w-28 h-auto sm:w-42 md:w-42 lg:w-64 2xl:w-68",
   ];
   return `${sizes[index]} ${baseClasses}`;
 }
