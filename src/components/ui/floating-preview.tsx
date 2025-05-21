@@ -26,7 +26,7 @@ export const FloatingPreview = () => {
   return (
     <div className="relative my-32">
       <div
-        className="flex w-full min-h-[800px] md:h-screen justify-center items-center bg-background"
+        className="flex w-full min-h-[800px] md:h-screen justify-center items-center "
         ref={scope}
       >
         <motion.div
@@ -64,7 +64,7 @@ export const FloatingPreview = () => {
                   className={getSizeClass(index)}
                   onClick={() => setActive(card)}
                 />
-                <p>{index}</p>
+
                 {active?.title === card.title && active.description && (
                   <motion.div
                     layoutId={`title-${card.title}-${id}`}
