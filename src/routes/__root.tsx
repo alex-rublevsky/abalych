@@ -11,6 +11,16 @@ import { DefaultCatchBoundary } from "~/components/DefaultCatchBoundary";
 import { NotFound } from "~/components/NotFound";
 import appCss from "~/styles/app.css?url";
 import { seo } from "~/utils/seo";
+import posthog from "posthog-js";
+import { PostHogProvider } from "posthog-js/react";
+
+// Initialize PostHog only on the client side
+if (typeof window !== "undefined") {
+  posthog.init(process.env.REACT_APP_PUBLIC_POSTHOG_HOST!, {
+    api_host: "https://us.i.posthog.com",
+    person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
+  });
+}
 
 export const Route = createRootRoute({
   head: () => ({
@@ -77,7 +87,13 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <Outlet />
+      {typeof window !== "undefined" ? (
+        <PostHogProvider client={posthog}>
+          <Outlet />
+        </PostHogProvider>
+      ) : (
+        <Outlet />
+      )}
     </RootDocument>
   );
 }
@@ -88,60 +104,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
+
       <body className="overscroll-none bg-background text-foreground">
-        {/* TODO: delete the routes the links below lead to */}
-        {/* <div className="p-2 flex gap-2 text-lg">
-          <Link
-            to="/"
-            activeProps={{
-              className: "font-bold",
-            }}
-            activeOptions={{ exact: true }}
-          >
-            Home
-          </Link>{" "}
-          <Link
-            to="/posts"
-            activeProps={{
-              className: "font-bold",
-            }}
-          >
-            Posts
-          </Link>{" "}
-          <Link
-            to="/users"
-            activeProps={{
-              className: "font-bold",
-            }}
-          >
-            Users
-          </Link>{" "}
-          <Link
-            to="/route-a"
-            activeProps={{
-              className: "font-bold",
-            }}
-          >
-            Pathless Layout
-          </Link>{" "}
-          <Link
-            to="/deferred"
-            activeProps={{
-              className: "font-bold",
-            }}
-          >
-            Deferred
-          </Link>{" "}
-          <Link
-            // @ts-expect-error
-            to="/this-route-does-not-exist"
-            activeProps={{
-              className: "font-bold",
-            }}
-          >
-            This Route Does Not Exist
-          </Link>
-        </div> */}
         <hr />
 
         {children}

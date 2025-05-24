@@ -27,6 +27,7 @@
     "lucide-react": "^0.503.0",
     "motion": "^12.7.4",
     "motion-plus": "^0.1.6",
+    "posthog-js": "^1.246.0",
     "react": "0.0.0-experimental-c4676e72-20250520",
     "react-dom": "0.0.0-experimental-c4676e72-20250520",
     "tailwind-merge": "^3.2.0",

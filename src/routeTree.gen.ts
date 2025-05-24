@@ -13,9 +13,9 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as RedirectImport } from './routes/redirect'
 import { Route as DeferredImport } from './routes/deferred'
+import { Route as AnalyticsImport } from './routes/analytics'
 import { Route as PathlessLayoutImport } from './routes/_pathlessLayout'
 import { Route as IndexImport } from './routes/index'
-import { Route as GalleryPhotoIdImport } from './routes/gallery.$photoId'
 import { Route as PathlessLayoutNestedLayoutImport } from './routes/_pathlessLayout/_nested-layout'
 import { Route as PathlessLayoutNestedLayoutRouteBImport } from './routes/_pathlessLayout/_nested-layout/route-b'
 import { Route as PathlessLayoutNestedLayoutRouteAImport } from './routes/_pathlessLayout/_nested-layout/route-a'
@@ -34,6 +34,12 @@ const DeferredRoute = DeferredImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AnalyticsRoute = AnalyticsImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const PathlessLayoutRoute = PathlessLayoutImport.update({
   id: '/_pathlessLayout',
   getParentRoute: () => rootRoute,
@@ -42,12 +48,6 @@ const PathlessLayoutRoute = PathlessLayoutImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const GalleryPhotoIdRoute = GalleryPhotoIdImport.update({
-  id: '/gallery/$photoId',
-  path: '/gallery/$photoId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -90,6 +90,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PathlessLayoutImport
       parentRoute: typeof rootRoute
     }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsImport
+      parentRoute: typeof rootRoute
+    }
     '/deferred': {
       id: '/deferred'
       path: '/deferred'
@@ -110,13 +117,6 @@ declare module '@tanstack/react-router' {
       fullPath: ''
       preLoaderRoute: typeof PathlessLayoutNestedLayoutImport
       parentRoute: typeof PathlessLayoutImport
-    }
-    '/gallery/$photoId': {
-      id: '/gallery/$photoId'
-      path: '/gallery/$photoId'
-      fullPath: '/gallery/$photoId'
-      preLoaderRoute: typeof GalleryPhotoIdImport
-      parentRoute: typeof rootRoute
     }
     '/_pathlessLayout/_nested-layout/route-a': {
       id: '/_pathlessLayout/_nested-layout/route-a'
@@ -170,9 +170,9 @@ const PathlessLayoutRouteWithChildren = PathlessLayoutRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof PathlessLayoutNestedLayoutRouteWithChildren
+  '/analytics': typeof AnalyticsRoute
   '/deferred': typeof DeferredRoute
   '/redirect': typeof RedirectRoute
-  '/gallery/$photoId': typeof GalleryPhotoIdRoute
   '/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
   '/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
 }
@@ -180,9 +180,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof PathlessLayoutNestedLayoutRouteWithChildren
+  '/analytics': typeof AnalyticsRoute
   '/deferred': typeof DeferredRoute
   '/redirect': typeof RedirectRoute
-  '/gallery/$photoId': typeof GalleryPhotoIdRoute
   '/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
   '/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
 }
@@ -191,10 +191,10 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/_pathlessLayout': typeof PathlessLayoutRouteWithChildren
+  '/analytics': typeof AnalyticsRoute
   '/deferred': typeof DeferredRoute
   '/redirect': typeof RedirectRoute
   '/_pathlessLayout/_nested-layout': typeof PathlessLayoutNestedLayoutRouteWithChildren
-  '/gallery/$photoId': typeof GalleryPhotoIdRoute
   '/_pathlessLayout/_nested-layout/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
   '/_pathlessLayout/_nested-layout/route-b': typeof PathlessLayoutNestedLayoutRouteBRoute
 }
@@ -204,28 +204,28 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | ''
+    | '/analytics'
     | '/deferred'
     | '/redirect'
-    | '/gallery/$photoId'
     | '/route-a'
     | '/route-b'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | ''
+    | '/analytics'
     | '/deferred'
     | '/redirect'
-    | '/gallery/$photoId'
     | '/route-a'
     | '/route-b'
   id:
     | '__root__'
     | '/'
     | '/_pathlessLayout'
+    | '/analytics'
     | '/deferred'
     | '/redirect'
     | '/_pathlessLayout/_nested-layout'
-    | '/gallery/$photoId'
     | '/_pathlessLayout/_nested-layout/route-a'
     | '/_pathlessLayout/_nested-layout/route-b'
   fileRoutesById: FileRoutesById
@@ -234,17 +234,17 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PathlessLayoutRoute: typeof PathlessLayoutRouteWithChildren
+  AnalyticsRoute: typeof AnalyticsRoute
   DeferredRoute: typeof DeferredRoute
   RedirectRoute: typeof RedirectRoute
-  GalleryPhotoIdRoute: typeof GalleryPhotoIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PathlessLayoutRoute: PathlessLayoutRouteWithChildren,
+  AnalyticsRoute: AnalyticsRoute,
   DeferredRoute: DeferredRoute,
   RedirectRoute: RedirectRoute,
-  GalleryPhotoIdRoute: GalleryPhotoIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -259,9 +259,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/_pathlessLayout",
+        "/analytics",
         "/deferred",
-        "/redirect",
-        "/gallery/$photoId"
+        "/redirect"
       ]
     },
     "/": {
@@ -272,6 +272,9 @@ export const routeTree = rootRoute
       "children": [
         "/_pathlessLayout/_nested-layout"
       ]
+    },
+    "/analytics": {
+      "filePath": "analytics.tsx"
     },
     "/deferred": {
       "filePath": "deferred.tsx"
@@ -286,9 +289,6 @@ export const routeTree = rootRoute
         "/_pathlessLayout/_nested-layout/route-a",
         "/_pathlessLayout/_nested-layout/route-b"
       ]
-    },
-    "/gallery/$photoId": {
-      "filePath": "gallery.$photoId.tsx"
     },
     "/_pathlessLayout/_nested-layout/route-a": {
       "filePath": "_pathlessLayout/_nested-layout/route-a.tsx",
