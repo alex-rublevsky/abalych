@@ -21,6 +21,7 @@ import { mainGalleryData, stickerGalleryData } from "~/data/gallery";
 import Loader from "~/components/ui/Loader";
 import HeroSection from "~/components/ui/HeroSection";
 import Pattern from "~/components/ui/Pattern";
+import { PostHogWrapper } from "~/components/PostHogWrapper";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -30,28 +31,30 @@ function Home() {
   const { isMobile } = useViewportSize();
 
   return (
-    <SmoothScroll>
-      <main className="relative ">
-        <Pattern />
-        {/* <Loader /> */}
+    <PostHogWrapper>
+      <SmoothScroll>
+        <main className="relative ">
+          <Pattern />
+          {/* <Loader /> */}
 
-        <HeroSection isMobile={isMobile} />
+          <HeroSection isMobile={isMobile} />
 
-        <ExperienceSection />
+          <ExperienceSection />
 
-        <ParallaxGraffiti isMobile={isMobile} />
+          <ParallaxGraffiti isMobile={isMobile} />
 
-        {isMobile ? (
-          <Gallery data={stickerGalleryData} title="Stickers" />
-        ) : (
-          <FloatingPreview />
-        )}
-        <Gallery data={mainGalleryData} />
+          {isMobile ? (
+            <Gallery data={stickerGalleryData} title="Stickers" />
+          ) : (
+            <FloatingPreview />
+          )}
+          <Gallery data={mainGalleryData} />
 
-        <AbalychWorldwide />
+          <AbalychWorldwide />
 
-        <FooterContact />
-      </main>
-    </SmoothScroll>
+          <FooterContact />
+        </main>
+      </SmoothScroll>
+    </PostHogWrapper>
   );
 }

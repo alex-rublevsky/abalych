@@ -1,6 +1,5 @@
 import {
   HeadContent,
-  Link,
   Outlet,
   Scripts,
   createRootRoute,
@@ -11,16 +10,6 @@ import { DefaultCatchBoundary } from "~/components/DefaultCatchBoundary";
 import { NotFound } from "~/components/NotFound";
 import appCss from "~/styles/app.css?url";
 import { seo } from "~/utils/seo";
-import posthog from "posthog-js";
-import { PostHogProvider } from "posthog-js/react";
-
-// Initialize PostHog only on the client side
-if (typeof window !== "undefined") {
-  posthog.init(process.env.REACT_APP_PUBLIC_POSTHOG_HOST!, {
-    api_host: "https://us.i.posthog.com",
-    person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
-  });
-}
 
 export const Route = createRootRoute({
   head: () => ({
@@ -87,13 +76,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      {typeof window !== "undefined" ? (
-        <PostHogProvider client={posthog}>
-          <Outlet />
-        </PostHogProvider>
-      ) : (
-        <Outlet />
-      )}
+      <Outlet />
     </RootDocument>
   );
 }

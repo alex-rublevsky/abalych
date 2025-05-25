@@ -32,6 +32,7 @@ export default function FooterContact() {
                 <FramerMagnetic>
                   <a
                     className="p-0 md:p-12 lg:p-20 flex align-middle justify-center cursor-pointer group"
+                    id="instagram"
                     href="https://www.instagram.com/abalych/"
                   >
                     <svg
@@ -47,6 +48,7 @@ export default function FooterContact() {
                   <a
                     className="p-0 md:p-12 lg:p-20 flex align-middle justify-center cursor-pointer group"
                     href="https://t.me/sosipisososipisos"
+                    id="telegram"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -61,6 +63,7 @@ export default function FooterContact() {
                   <a
                     className="p-0 md:p-12 lg:p-20 flex align-middle justify-center cursor-pointer group"
                     href="https://www.linkedin.com/in/kristina-abalymova/"
+                    id="linkedin"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -75,6 +78,7 @@ export default function FooterContact() {
                   <a
                     className="p-0 md:p-12 lg:p-20 flex align-middle justify-center cursor-pointer group"
                     href="mailto:kristina.abalymova@gmail.com"
+                    id="mail"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
