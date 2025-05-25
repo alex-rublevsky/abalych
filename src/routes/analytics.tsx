@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
 
 export const Route = createFileRoute("/analytics")({
   component: RouteComponent,
@@ -13,7 +12,7 @@ function RouteComponent() {
         width="100%"
         height="100%"
         style={{ border: "none", display: "block" }}
-        src="https://us.posthog.com/embedded/t52Z6s9LPP3I_ALB3a4RokNA0XO6NA"
+        src="https://us.posthog.com/embedded/PZmUB6GcWSy7jJubFhlAY1fEDDUGGg"
       />
     </div>
   );
