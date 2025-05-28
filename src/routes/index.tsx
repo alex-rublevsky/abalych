@@ -35,7 +35,7 @@ function Home() {
       <SmoothScroll>
         <main className="relative ">
           <Pattern />
-          {/* <Loader /> */}
+          <Loader />
 
           <HeroSection isMobile={isMobile} />
 

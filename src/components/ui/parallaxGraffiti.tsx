@@ -30,7 +30,7 @@ export default function ParallaxGraffiti({
     <div className="z-[999]">
       <img
         className="h-[50vw] w-full z-[999] relative"
-        src="https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/graffiti-wall.jpg"
+        src="https://abalych-assets.rublevsky.studio/graffiti-wall.jpg"
       />
     </div>
   ) : (
@@ -48,7 +48,7 @@ export default function ParallaxGraffiti({
           className="w-full h-[120%] -translate-y-[10%]"
         >
           <img
-            src="https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/graffiti-wall.jpg"
+            src="https://abalych-assets.rublevsky.studio/graffiti-wall.jpg"
             alt="Graffiti wall background"
             className="w-full h-full object-cover"
           />

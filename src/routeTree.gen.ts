@@ -13,7 +13,6 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as RedirectImport } from './routes/redirect'
 import { Route as DeferredImport } from './routes/deferred'
-import { Route as AnalyticsImport } from './routes/analytics'
 import { Route as PathlessLayoutImport } from './routes/_pathlessLayout'
 import { Route as IndexImport } from './routes/index'
 import { Route as PathlessLayoutNestedLayoutImport } from './routes/_pathlessLayout/_nested-layout'
@@ -31,12 +30,6 @@ const RedirectRoute = RedirectImport.update({
 const DeferredRoute = DeferredImport.update({
   id: '/deferred',
   path: '/deferred',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AnalyticsRoute = AnalyticsImport.update({
-  id: '/analytics',
-  path: '/analytics',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -88,13 +81,6 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: ''
       preLoaderRoute: typeof PathlessLayoutImport
-      parentRoute: typeof rootRoute
-    }
-    '/analytics': {
-      id: '/analytics'
-      path: '/analytics'
-      fullPath: '/analytics'
-      preLoaderRoute: typeof AnalyticsImport
       parentRoute: typeof rootRoute
     }
     '/deferred': {
@@ -170,7 +156,6 @@ const PathlessLayoutRouteWithChildren = PathlessLayoutRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '': typeof PathlessLayoutNestedLayoutRouteWithChildren
-  '/analytics': typeof AnalyticsRoute
   '/deferred': typeof DeferredRoute
   '/redirect': typeof RedirectRoute
   '/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
@@ -180,7 +165,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof PathlessLayoutNestedLayoutRouteWithChildren
-  '/analytics': typeof AnalyticsRoute
   '/deferred': typeof DeferredRoute
   '/redirect': typeof RedirectRoute
   '/route-a': typeof PathlessLayoutNestedLayoutRouteARoute
@@ -191,7 +175,6 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/_pathlessLayout': typeof PathlessLayoutRouteWithChildren
-  '/analytics': typeof AnalyticsRoute
   '/deferred': typeof DeferredRoute
   '/redirect': typeof RedirectRoute
   '/_pathlessLayout/_nested-layout': typeof PathlessLayoutNestedLayoutRouteWithChildren
@@ -201,28 +184,13 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | ''
-    | '/analytics'
-    | '/deferred'
-    | '/redirect'
-    | '/route-a'
-    | '/route-b'
+  fullPaths: '/' | '' | '/deferred' | '/redirect' | '/route-a' | '/route-b'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | ''
-    | '/analytics'
-    | '/deferred'
-    | '/redirect'
-    | '/route-a'
-    | '/route-b'
+  to: '/' | '' | '/deferred' | '/redirect' | '/route-a' | '/route-b'
   id:
     | '__root__'
     | '/'
     | '/_pathlessLayout'
-    | '/analytics'
     | '/deferred'
     | '/redirect'
     | '/_pathlessLayout/_nested-layout'
@@ -234,7 +202,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PathlessLayoutRoute: typeof PathlessLayoutRouteWithChildren
-  AnalyticsRoute: typeof AnalyticsRoute
   DeferredRoute: typeof DeferredRoute
   RedirectRoute: typeof RedirectRoute
 }
@@ -242,7 +209,6 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PathlessLayoutRoute: PathlessLayoutRouteWithChildren,
-  AnalyticsRoute: AnalyticsRoute,
   DeferredRoute: DeferredRoute,
   RedirectRoute: RedirectRoute,
 }
@@ -259,7 +225,6 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/_pathlessLayout",
-        "/analytics",
         "/deferred",
         "/redirect"
       ]
@@ -272,9 +237,6 @@ export const routeTree = rootRoute
       "children": [
         "/_pathlessLayout/_nested-layout"
       ]
-    },
-    "/analytics": {
-      "filePath": "analytics.tsx"
     },
     "/deferred": {
       "filePath": "deferred.tsx"

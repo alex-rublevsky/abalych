@@ -50,7 +50,7 @@ export default function ExperienceSection() {
                   <div className="relative z-10  ">
                     {item.logo && (
                       <img
-                        src={`https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/${item.logo}`}
+                        src={`https://abalych-assets.rublevsky.studio/${item.logo}`}
                         className={`w-auto object-contain mb-4 ${item.largeLogo ? "h-32" : "h-18"}`}
                         alt={`${item.company} logo`}
                       />

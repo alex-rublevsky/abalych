@@ -71,20 +71,7 @@ export default function Loader() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <motion.div className="relative w-[70vw] lg:w-[50vh] h-[70vw] lg:h-[50vh] flex justify-center items-center">
-            <motion.div
-              className="flex items-center justify-center"
-              initial={{ scale: 1 }}
-              animate={{ scale: 0.5 }}
-              transition={{
-                duration: 1,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            >
-              <SymbolA className="w-32 lg:w-48" />
-            </motion.div>
-          </motion.div>
+          <SymbolA className="w-32 lg:w-48" />
         </motion.div>
       )}
     </AnimatePresence>
