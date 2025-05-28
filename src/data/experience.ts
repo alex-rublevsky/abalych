@@ -19,20 +19,21 @@ export interface ExperienceEntry {
 export const experienceData: ExperienceData = {
   sections: [
     {
-      title: "Professional Experience",
+      title: "Experience",
       entries: [
         {
           date: "Jan 2024 – April 2024",
           title: "Medical Research Volunteer",
           company: "Canadian centre for clinical trials (at Wilderman Medical Clinic)",
-          description: "Collection, systematization, and entry of research data into databases in accordance with clinical trial protocols. Conducting scientific literature searches through academic search engines to support research projects. Working with the Accuro EMR electronic medical system to retrieve and verify patient data"
+          description: `Collection, systematization, and entry of research data into databases in accordance with clinical trial protocols
+          Conducting scientific literature searches through academic search engines to support research projects
+          Working with the Accuro EMR electronic medical system to retrieve and verify patient data`,
         },
         {
           date: "September 2019 - May 2020",
           title: "Laboratory and Vivarium Assistant",
           company: "Reaviz Medical University",
-          description: `Directed research in neuropharmacology:
-          the impact of the adaptogen of plant origin Rhodiola rosea on resistance of rats to stress conditions`,
+          description: `Directed research in Neuropharmacology: the impact of the adaptogen of plant origin <em>Rhodiola rosea</em> on resistance of rats to stress conditions`,
           logo: "logos/reaviz.png",
           largeLogo: true
         },
@@ -44,12 +45,33 @@ export const experienceData: ExperienceData = {
         {
           date: "June 2024 — September 2024",
           title: "Chinese Tea Practitioner",
-          company: "Mostik Teahouse",
+          company: "Mosteaque Teahouse",
           logo: "logos/mostik.webp",
-          description: `• Conducted traditional Chinese tea ceremonies, educating participants on cultural practices and increasing attendee engagement
-          • Operated effectively in a fast-paced festival environment, managing up to 70 orders per hour while ensuring high standards of service
-          • Provided expert recommendations on 30+ varieties of tea and contributed to a 20% increase in customer satisfaction ratings based on post-event feedback
-          • Trained a team of 3 new staff members in ceremony preparation techniques and proper teaware handling`,
+          description: `Conducted traditional Chinese tea ceremonies, educating participants on cultural practices and increasing attendee engagement. Operated effectively in a fast-paced festival environment`,
+          largeLogo: true
+        },
+        {
+          date: "May 2022 — July 2022",
+          title: "Turtle Crossing Guard",
+          company: "The Land Between Charity",
+          logo: "logos/the-land-between.png", //TODO: fix logo bg
+          description: `Recorded occurrences for conservation and road mortality mitigation projects`,
+          largeLogo: true
+
+        },
+         {
+          date: "Sept 2022 — April 2023",
+          title: "Outreach Officer",
+          company: "Trent University Russian-Speaking Association",
+          logo: "logos/trent-russian-association.png",
+          description: `Spokesperson and promoter of the student association`,
+          largeLogo: true
+        },
+         {
+          date: "May 2024",
+          title: "Route Marshal Volunteer at Walk a Mile in Her Shoes“ Event",
+          company: "YWCA Peterborough",
+          logo: "logos/walk-a-mile.png",
           largeLogo: true
         },
        
@@ -60,9 +82,9 @@ export const experienceData: ExperienceData = {
       entries: [
         {
           date: "Graduation 2025",
-          title: "Bachelor of Science (B.Sc.) in Biology Candidate",
+          title: "Bachelor of Science (BSc) in Biology",
           company: "Trent University",
-          
+          description: `Key courses: behavioural ecology, environmental toxicology, organic chemistry, fisheries assessment and management`,
           logo: "logos/trent.png"
         },
         {
@@ -70,9 +92,7 @@ export const experienceData: ExperienceData = {
           title: "With Honors Diploma in General Studies",
           company: "Samara Medical-Technical Lyceum",
           logo: "logos/smtl.svg",
-          description: `• Directed research in Psychology
-• Undertook a project aimed at developing recommendations for high school students with Internet addiction.
-Topic: Formation of psychological complexes in cybercommunicatively dependent teenagers
+          description: `Directed research in Psychology: formation of psychological complexes in cybercommunicatively dependent teenagers
 Work was presented on XI All-Russian conference of students "National heritage of Russia" of the forum "APK - Youth, Science, Innovation"`,
           largeLogo: true
         

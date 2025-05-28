@@ -23,7 +23,7 @@ export const Route = createRootRoute({
       },
       ...seo({
         title: "Abalych",
-        description: `CEO of swag 2008`,
+        description: `Multidisciplinary portfolio of Kristina Abalymova`,
       }),
     ],
     links: [
