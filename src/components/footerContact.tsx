@@ -7,7 +7,7 @@ export default function FooterContact() {
       <div className="relative w-full h-full">
         {/* Background image */}
         <img
-          src="https://abalych-assets.rublevsky.studio/forest-portrait.jpg"
+          src="https://assets.abaly.ch/forest-portrait.jpg"
           alt="forest portrait"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -16,7 +16,7 @@ export default function FooterContact() {
         <div className="absolute inset-0 mix-blend-difference">
           <div className="relative h-full flex flex-col items-center justify-end">
             <img
-              src="https://abalych-assets.rublevsky.studio/graffiti.png"
+              src="https://assets.abaly.ch/graffiti.webp"
               alt="graffiti"
               className="absolute left-1/2 pl-4 -translate-x-1/2 -top-0 w-full max-h-[50dvh] object-contain"
             />

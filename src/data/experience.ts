@@ -34,7 +34,7 @@ export const experienceData: ExperienceData = {
           title: "Laboratory and Vivarium Assistant",
           company: "Reaviz Medical University",
           description: `Directed research in Neuropharmacology: the impact of the adaptogen of plant origin <em>Rhodiola rosea</em> on resistance of rats to stress conditions`,
-          logo: "logos/reaviz.png",
+          logo: "logos/reaviz.webp",
           largeLogo: true
         },
         {
@@ -54,7 +54,7 @@ export const experienceData: ExperienceData = {
           date: "May 2022 — July 2022",
           title: "Turtle Crossing Guard",
           company: "The Land Between Charity",
-          logo: "logos/the-land-between.png", //TODO: fix logo bg
+          logo: "logos/the-land-between.webp", //TODO: fix logo bg
           description: `Recorded occurrences for conservation and road mortality mitigation projects`,
           largeLogo: true
 
@@ -63,7 +63,7 @@ export const experienceData: ExperienceData = {
           date: "Sept 2022 — April 2023",
           title: "Outreach Officer",
           company: "Trent University Russian-Speaking Association",
-          logo: "logos/trent-russian-association.png",
+          logo: "logos/trent-russian-association.webp",
           description: `Spokesperson and promoter of the student association`,
           largeLogo: true
         },
@@ -128,7 +128,7 @@ Work was presented on XI All-Russian conference of students "National heritage o
   date: "November 2023",
   title: "Understanding Opioids - Methods for Prevention & Response",
   company: "Peterborough Drug Strategy, Peterborough, ON",
-  logo: "logos/drug-strategy.png",
+  logo: "logos/drug-strategy.webp",
   largeLogo: true
 }
 
