@@ -20,7 +20,11 @@
     "routes": [
       {
         "custom_domain": true,
-        "pattern": "abaly.ch",
+        "pattern": "abaly.ch"
+      },
+       {
+        "custom_domain": true,
+        "pattern": "www.abaly.ch"
       }
-    ],
+    ]
   }
