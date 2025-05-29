@@ -4,14 +4,21 @@ import Floating, { FloatingElement } from "./parallax-floating";
 import { type CardData, stickerGalleryData } from "~/data/gallery";
 import { PortalCard } from "./portal-card";
 import ScatterText from "./ScatterText";
+import { ShoppingCart } from "lucide-react";
+import { Button } from "./button";
 
 export const FloatingPreview = () => {
   const [scope, animate] = useAnimate();
   const [active, setActive] = useState<CardData | null>(null);
+  const [isClient, setIsClient] = useState(false);
   const id = useId();
 
   useEffect(() => {
-    if (!scope.current) return;
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!scope.current || !isClient) return;
 
     const images = scope.current.querySelectorAll("img");
     if (images.length === 0) return;
@@ -21,7 +28,11 @@ export const FloatingPreview = () => {
       { opacity: [0, 1] },
       { duration: 0.5, delay: stagger(0.15) }
     );
-  }, [animate]);
+  }, [animate, isClient]);
+
+  if (!isClient) {
+    return null;
+  }
 
   return (
     <div className="relative my-32">
@@ -50,20 +61,66 @@ export const FloatingPreview = () => {
             <FloatingElement
               key={card.title}
               depth={getDepthValue(index)}
-              className={getPositionClass(index) + ` pointer-events-auto`}
-              layoutId={`card-${card.title}-${id}`}
+              className={
+                getPositionClass(index) + ` pointer-events-auto cursor-pointer`
+              }
             >
-              <div>{index}</div>
+              {/* <div>{index}</div> */}
               <motion.div
-                layoutId={`image-${card.title}-${id}`}
-                className="relative"
+                layoutId={`card-${card.title}-${id}`}
+                className="relative cursor-pointer"
+                onClick={() => setActive(card)}
+                initial="initial"
+                whileHover="hover"
+                variants={{
+                  initial: { scale: 1 },
+                  hover: { scale: 1.05 },
+                }}
+                transition={{
+                  duration: 0.2,
+                  layout: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
+                }}
+                layout
               >
+                {card.storeUrl && (
+                  <motion.div
+                    className="absolute top-2 right-2 z-10"
+                    layoutId={`buy-button-${card.title}-${id}`}
+                    layout
+                    transition={{
+                      layout: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
+                    }}
+                  >
+                    <motion.button
+                      className="flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors duration-200 rounded-lg cursor-pointer border border-gray-200/50 hover:border-gray-300/50 overflow-hidden"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(card.storeUrl, "_blank");
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                    >
+                      <motion.div layoutId={`buy-icon-${card.title}-${id}`}>
+                        <ShoppingCart className="h-4 w-4 text-gray-700" />
+                      </motion.div>
+                    </motion.button>
+                  </motion.div>
+                )}
                 <motion.img
+                  layoutId={`image-${card.title}-${id}`}
                   initial={{ opacity: 0 }}
-                  src={`https://abalych-assets.rublevsky.studio/${card.image}`}
+                  src={`https://assets.abaly.ch/${card.image}`}
                   alt={card.title}
                   className={getSizeClass(index)}
-                  onClick={() => setActive(card)}
+                  variants={{
+                    initial: { scale: 1 },
+                    hover: { scale: 1 },
+                  }}
+                  layout
+                  transition={{
+                    layout: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
+                  }}
                 />
 
                 {active?.title === card.title && active.description && (
@@ -107,7 +164,7 @@ function getDepthValue(index: number): number {
     case 9:
       return 2.4;
     case 10:
-      return 2;
+      return 1;
     default:
       return 1;
   }
@@ -117,11 +174,11 @@ function getPositionClass(index: number): string {
   const positions = [
     "top-[7%] left-[5%]",
     "top-[20%] md:top-[0%] left-[27%]",
-    "top-[5%] left-[53%]",
+    "top-[5%] right-[30%]",
     "top-[30%] md:top-[40%] left-[2%]",
-    "bottom-[5%] left-[5%]",
+    "bottom-[1%] left-[5%]",
     "top-[70%] right-[2%]",
-    "bottom-[0%] left-[52%] lg:left-[60%]",
+    "bottom-[0%] left-[52%] lg:left-[55%]",
     "top-[25%] lg:top-[24%] right-[14%]",
     "bottom-[0%] left-[30%]",
     "bottom-[30%] right-[2%]",
@@ -131,8 +188,7 @@ function getPositionClass(index: number): string {
 }
 
 function getSizeClass(index: number): string {
-  const baseClasses =
-    "object-cover hover:scale-105 duration-200 cursor-pointer transition-transform rounded-lg";
+  const baseClasses = "object-cover cursor-pointer rounded-lg";
   const sizes = [
     "w-28 h-auto md:w-44 lg:w-48 xl:w-52 2xl:w-72",
     "w-28 h-auto md:w-48 lg:w-58 xl:w-68",

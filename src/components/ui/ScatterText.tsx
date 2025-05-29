@@ -83,7 +83,7 @@ export default function ScatterText({
   }
 
   return (
-    <div className={`z-20 ${className || ""}`} ref={containerRef}>
+    <div className={`z-20 ${className || ""}`} ref={containerRef} style={style}>
       <h1
         className={`h1 text-foreground font-graffiti ${trackingLeading} ${sizes}`}
       >
