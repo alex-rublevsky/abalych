@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import { type CardData } from "~/data/gallery";
 import { useOutsideClick } from "~/hooks/use-outside-click";
 import Lenis from "lenis";
+import { ShoppingCart } from "lucide-react";
 
 interface PortalCardProps {
   active: CardData | null;
@@ -42,8 +43,15 @@ export const PortalCard: React.FC<PortalCardProps> = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null!) as React.RefObject<HTMLDivElement>;
   const lenisRef = useRef<Lenis | null>(null);
+  const [isClient, setIsClient] = React.useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     lenisRef.current = (window as any).lenis;
 
     if (active && lenisRef.current) {
@@ -57,11 +65,13 @@ export const PortalCard: React.FC<PortalCardProps> = ({
         lenisRef.current.start();
       }
     };
-  }, [active]);
+  }, [active, isClient]);
 
   useOutsideClick(ref, onClose);
 
   useEffect(() => {
+    if (!isClient) return;
+
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         onClose();
@@ -70,7 +80,11 @@ export const PortalCard: React.FC<PortalCardProps> = ({
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onClose]);
+  }, [onClose, isClient]);
+
+  if (!isClient) {
+    return null;
+  }
 
   return createPortal(
     <AnimatePresence>
@@ -88,13 +102,17 @@ export const PortalCard: React.FC<PortalCardProps> = ({
             <motion.div
               layoutId={`card-${active.title}-${id}`}
               ref={ref}
-              className={`w-full md:w-fit md:max-w-[95vw] mx-auto flex flex-col md:bg-white md:dark:bg-neutral-900 md:rounded-3xl overflow-hidden ${
+              className={`w-full md:w-fit md:max-w-[95vw] mx-auto flex flex-col overflow-hidden ${
                 active.description
                   ? "h-[100dvh]"
                   : "h-screen items-center justify-center"
               } md:h-auto`}
               style={{
                 maxHeight: "100dvh",
+              }}
+              layout
+              transition={{
+                layout: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
               }}
             >
               <div className="relative rounded-[1.3rem] overflow-hidden flex-shrink-0 w-fit mx-auto">
@@ -104,17 +122,47 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.15 }}
-                  className="flex absolute top-2 right-2 lg:hidden items-center justify-center z-[10001] bg-background/60 backdrop-blur-md rounded-[0.8rem] h-10 w-10"
+                  className="flex absolute top-2 left-2 lg:hidden items-center justify-center z-[10002] bg-background/60 backdrop-blur-md rounded-[0.8rem] h-10 w-10"
                   onClick={onClose}
                 >
                   <CloseIcon />
                 </motion.button>
-                <motion.div layoutId={`image-${active.title}-${id}`}>
-                  <img
-                    src={`https://pub-0cf7b6988eb140f288f8db5d275ea3b6.r2.dev/${active.image}`}
+                {active.storeUrl && (
+                  <motion.div
+                    layoutId={`buy-button-${active.title}-${id}`}
+                    className="absolute top-2 right-2 z-[10001] pointer-events-auto"
+                    layout
+                    transition={{
+                      layout: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
+                    }}
+                  >
+                    <motion.button
+                      className="flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors duration-200 rounded-lg cursor-pointer border border-gray-200/50 hover:border-gray-300/50 overflow-hidden"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(active.storeUrl, "_blank");
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                    >
+                      <motion.div layoutId={`buy-icon-${active.title}-${id}`}>
+                        <ShoppingCart className="h-4 w-4 text-gray-700" />
+                      </motion.div>
+                    </motion.button>
+                  </motion.div>
+                )}
+                <motion.div>
+                  <motion.img
+                    layoutId={`image-${active.title}-${id}`}
+                    src={`https://assets.abaly.ch/${active.image}`}
                     alt={active.title}
                     className={`w-auto h-auto md:rounded-tr-lg md:rounded-tl-lg object-contain [view-transition-name:card-image-${active.image}]`}
                     style={{ maxHeight: "95dvh" }}
+                    layout
+                    transition={{
+                      layout: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
+                    }}
                   />
                 </motion.div>
                 <div className="h-[3rem] md:h-[5rem] absolute bottom-0 left-0 w-full" />
@@ -138,7 +186,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.4 }}
-                  className="p-4 bg-white dark:bg-neutral-900 overflow-y-auto md:max-h-[95dvh] flex-1 md:flex-initial w-full"
+                  className="p-4 overflow-y-auto md:max-h-[95dvh] flex-1 md:flex-initial w-full"
                 >
                   <p className="text-md">{active.description}</p>
                 </motion.div>
