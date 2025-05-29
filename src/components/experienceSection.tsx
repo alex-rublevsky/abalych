@@ -50,7 +50,7 @@ export default function ExperienceSection() {
                   <div className="relative z-10  ">
                     {item.logo && (
                       <img
-                        src={`https://abalych-assets.rublevsky.studio/${item.logo}`}
+                        src={`https://assets.abaly.ch/${item.logo}`}
                         className={`w-auto object-contain mb-4 ${item.largeLogo ? "h-32" : "h-18"}`}
                         alt={`${item.company} logo`}
                       />
@@ -67,22 +67,20 @@ export default function ExperienceSection() {
                       {item.company}
                     </p>
 
-                    {item.description &&
-                      (item.description.includes("• ") ? (
-                        <ul className="mt-6 text-base text-foreground list-disc list-outside ml-5 space-y-2">
-                          {item.description
-                            .split("\n")
-                            .map((line: string, i: number) => (
-                              <li key={i} className="pl-1">
-                                {line.trim().replace("• ", "")}
-                              </li>
-                            ))}
-                        </ul>
-                      ) : (
-                        <p className="mt-6 text-base text-foreground">
-                          {item.description}
-                        </p>
-                      ))}
+                    {item.description && (
+                      <div className="mt-6 text-base text-foreground space-y-4">
+                        {item.description
+                          .split("\n")
+                          .map((paragraph: string) => paragraph.trim())
+                          .filter((paragraph: string) => paragraph.length > 0)
+                          .map((paragraph: string, i: number) => (
+                            <p
+                              key={i}
+                              dangerouslySetInnerHTML={{ __html: paragraph }}
+                            />
+                          ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
