@@ -1,12 +1,17 @@
 import { Canvas, useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useScroll, useTransform } from "motion/react";
 import { motion } from "framer-motion-3d";
 import * as THREE from "three";
 
 export default function AbalychWorldwide() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <section
@@ -17,10 +22,10 @@ export default function AbalychWorldwide() {
         className="relative flex-none max-w-screen-xl"
         style={{ width: "100%", aspectRatio: "1.5" }}
       >
-        <Earth parentRef={sectionRef} />
+        {isClient && <Earth parentRef={sectionRef} />}
       </div>
       {/* <img
-        src="https://abalych-assets.rublevsky.studio/graffiti-dark.webp"
+        src="https://assets.abaly.ch/graffiti-dark.webp"
         alt="graffiti"
         className="absolute  left-1/2 -translate-x-1/2  -bottom-70 w-full max-h-[50dvh] object-contain  mix-blend-difference z-[999]"
       /> */}
