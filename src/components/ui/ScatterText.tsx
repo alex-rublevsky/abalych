@@ -8,12 +8,14 @@ interface ScatterTextProps {
   text: string;
   className?: string;
   extraLarge?: boolean;
+  style?: React.CSSProperties;
 }
 
 export default function ScatterText({
   text,
   className,
   extraLarge,
+  style,
 }: ScatterTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const velocityX = useMotionValue(0);
@@ -63,7 +65,7 @@ export default function ScatterText({
 
   const sizes = extraLarge
     ? "text-6xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-9xl"
-    : "text-4xl sm:text-5xl lg:text-6xl xl:text-6xl";
+    : "text-4xl md:text-5xl lg:text-6xl xl:text-6xl";
 
   const trackingLeading = extraLarge
     ? "tracking-widest 2xl:tracking-wider leading-20 md:leading-16 xl:leading-28 "
@@ -72,7 +74,8 @@ export default function ScatterText({
   if (isMobile) {
     return (
       <h1
-        className={`${className || ""} font-graffiti text-foreground ${trackingLeading} ${sizes}`}
+        className={`${className || ""} font-graffiti text-foreground ${trackingLeading} ${sizes} w-fit`}
+        style={style}
       >
         {text}
       </h1>
