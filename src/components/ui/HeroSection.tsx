@@ -34,7 +34,7 @@ export default function HeroSection({ isMobile }: HeroProps) {
             color="#ffffff"
           />
           <img
-            src="https://abalych-assets.rublevsky.studio/hero.webp"
+            src="https://assets.abaly.ch/hero.webp"
             alt="Kristina's portrait"
             className="w-full h-full object-contain z-3"
           />
