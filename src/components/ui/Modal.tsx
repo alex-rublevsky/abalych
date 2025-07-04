@@ -138,48 +138,47 @@ export const PortalCard: React.FC<PortalCardProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
+            transition={{ 
+              duration: 0.2, 
+              delay: 0.1,
+              exit: { duration: 0.1, delay: 0 }
+            }}
             className="fixed inset-0 bg-background/20 backdrop-blur-lg h-full w-full z-[9999] cursor-pointer"
             onClick={onClose}
           />
-          <div className="fixed inset-0 flex md:grid md:place-items-center z-[10000] pointer-events-none">
+          <motion.div
+            key="modal-backdrop"
+            className="fixed inset-0 z-[10000] flex items-center justify-center p-2 lg:p-4 pointer-events-none"
+            onClick={onClose}
+          >
             <motion.div
               ref={ref}
-              className={`w-full flex flex-col overflow-hidden ${
-                active.description
-                  ? "h-fit max-h-[95vh] md:max-h-[95dvh]"
-                  : "h-fit items-center justify-center"
-              } md:h-auto`}
-              style={{
-                maxHeight: "100dvh",
-              }}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              key="modal-content"
+              className="relative flex flex-col h-auto w-fit max-w-7xl pointer-events-none cursor-default"
             >
-              <div className="relative rounded-[1.3rem] overflow-hidden flex-shrink-0 w-fit mx-auto">
-                <motion.button
-                  key={`button-${active.title}-${id}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                  className="flex absolute top-2 left-2 lg:hidden items-center justify-center z-[10002] bg-background/60 backdrop-blur-md rounded-[0.8rem] h-10 w-10"
-                  onClick={onClose}
-                >
-                  <CloseIcon />
-                </motion.button>
+              {/* Close button */}
+              <motion.button
+                key={`button-${active.title}-${id}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.15 }}
+                className="absolute top-2 left-2 lg:hidden flex items-center justify-center z-[10002] bg-background/60 backdrop-blur-md rounded-[0.8rem] h-10 w-10"
+                onClick={onClose}
+              >
+                <CloseIcon />
+              </motion.button>
 
-                {/* Unified structure for both single and multiple images */}
+              {/* Main content container */}
+              <div className="relative flex items-center justify-center w-full h-auto pointer-events-none">
                 {hasMultipleImages ? (
-                  <>
+                  <div className="relative w-full max-w-full pointer-events-auto" onClick={(e) => e.stopPropagation()}>
                     {/* Carousel container */}
                     <motion.div
                       ref={carouselRef}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="overflow-x-auto overflow-y-hidden scrollbar-none touch-pan-x snap-x snap-mandatory scroll-smooth max-h-[95dvh] w-fit max-w-[95vw]"
+                      className="overflow-x-auto overflow-y-hidden scrollbar-none touch-pan-x snap-x snap-mandatory scroll-smooth max-h-[95dvh] w-full"
                       style={{
                         msOverflowStyle: "none",
                         scrollbarWidth: "none",
@@ -193,65 +192,86 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                             className="flex-shrink-0 w-full flex justify-center items-center snap-center relative"
                           >
                             <div className="relative pointer-events-none">
-                              {/* Use motion.img with layoutId only for the first/current image */}
+                              {/* Use motion.div with layoutId only for the first/current image */}
                               {index === 0 ? (
-                                <motion.img
+                                <motion.div
                                   layoutId={`card-${active.title}-${id}`}
-                                  src={`https://assets.abaly.ch/${img}`}
-                                  alt={`${active.title} - Image ${index + 1}`}
-                                  className="w-auto h-auto rounded-lg object-contain select-none pointer-events-auto"
-                                  style={{ maxHeight: "95dvh" }}
-                                  draggable={false}
+                                  className="relative"
                                   transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-                                />
-                              ) : (
-                                <img
-                                  src={`https://assets.abaly.ch/${img}`}
-                                  alt={`${active.title} - Image ${index + 1}`}
-                                  className="w-auto h-auto rounded-lg object-contain select-none pointer-events-auto"
-                                  style={{ maxHeight: "95dvh" }}
-                                  draggable={false}
-                                />
-                              )}
-
-                              {/* Shopping cart button positioned relative to each image */}
-                              {active.storeUrl &&
-                                index === currentImageIndex && (
-                                  <motion.div
-                                    layoutId={`buy-button-${active.title}-${id}`}
-                                    className="absolute top-2 right-2 z-[10001] pointer-events-auto"
-                                    layout
-                                    transition={{
-                                      layout: {
-                                        duration: 0.4,
-                                        ease: [0.25, 0.1, 0.25, 1],
-                                      },
-                                    }}
-                                  >
-                                    <motion.button
-                                      className="flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors duration-200 rounded-lg cursor-pointer border border-gray-200/50 hover:border-gray-300/50 overflow-hidden"
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        window.open(
-                                          active.storeUrl,
-                                          "_blank"
-                                        );
-                                      }}
-                                      whileHover={{ scale: 1.05 }}
-                                      whileTap={{ scale: 0.95 }}
-                                      transition={{
-                                        duration: 0.2,
-                                        ease: "easeOut",
-                                      }}
-                                    >
+                                >
+                                  <img
+                                    src={`https://assets.abaly.ch/${img}`}
+                                    alt={`${active.title} - Image ${index + 1}`}
+                                    className="w-auto h-auto rounded-lg object-contain select-none pointer-events-auto"
+                                    style={{ maxHeight: "95dvh" }}
+                                    draggable={false}
+                                  />
+                                  
+                                  {/* Shopping cart button positioned relative to each image */}
+                                  {active.storeUrl &&
+                                    index === currentImageIndex && (
                                       <motion.div
-                                        layoutId={`buy-icon-${active.title}-${id}`}
+                                        layoutId={`buy-button-${active.title}-${id}`}
+                                        className="absolute top-2 right-2 z-[10001] pointer-events-auto"
+                                        layout
+                                        transition={{
+                                          layout: {
+                                            duration: 0.4,
+                                            ease: [0.25, 0.1, 0.25, 1],
+                                          },
+                                        }}
                                       >
-                                        <ShoppingCart className="h-4 w-4 text-gray-700" />
+                                        <motion.button
+                                          className="flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors duration-200 rounded-lg cursor-pointer border border-gray-200/50 hover:border-gray-300/50 overflow-hidden"
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            window.open(
+                                              active.storeUrl,
+                                              "_blank"
+                                            );
+                                          }}
+                                          whileHover={{ scale: 1.05 }}
+                                          whileTap={{ scale: 0.95 }}
+                                          transition={{
+                                            duration: 0.2,
+                                            ease: "easeOut",
+                                          }}
+                                        >
+                                          <motion.div
+                                            layoutId={`buy-icon-${active.title}-${id}`}
+                                          >
+                                            <ShoppingCart className="h-4 w-4 text-gray-700" />
+                                          </motion.div>
+                                        </motion.button>
                                       </motion.div>
-                                    </motion.button>
-                                  </motion.div>
-                                )}
+                                    )}
+
+                                  {/* Title overlay for multiple images */}
+                                  {active.title && active.showTitle && (
+                                    <div
+                                      className={`absolute inset-x-0 bottom-20 p-2 md:p-2 ${
+                                        active.darkText ? "text-black" : "text-white"
+                                      }`}
+                                    >
+                                      <h5
+                                        className="pt-2 pb-2 px-4 backdrop-blur-sm w-fit rounded-[0.8rem] overflow-hidden text-base"
+                                      >
+                                        {active.title}
+                                      </h5>
+                                    </div>
+                                  )}
+                                </motion.div>
+                              ) : (
+                                <div className="relative">
+                                  <img
+                                    src={`https://assets.abaly.ch/${img}`}
+                                    alt={`${active.title} - Image ${index + 1}`}
+                                    className="w-auto h-auto rounded-lg object-contain select-none pointer-events-auto"
+                                    style={{ maxHeight: "95dvh" }}
+                                    draggable={false}
+                                  />
+                                </div>
+                              )}
                             </div>
                           </div>
                         ))}
@@ -289,118 +309,118 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                     >
                       <ChevronRight className="h-6 w-6" />
                     </motion.button>
-                  </>
+
+                    {/* Thumbnail navigation for multiple images */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 20 }}
+                      transition={{ delay: 0 }}
+                      className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-[10002] flex gap-2 bg-black/60 backdrop-blur-md rounded-lg p-3 pointer-events-auto"
+                    >
+                      {images.map((img, index) => (
+                        <motion.button
+                          key={index}
+                          onClick={() => {
+                            setCurrentImageIndex(index);
+                            scrollToImage(index);
+                          }}
+                          className={`relative overflow-hidden rounded-md transition-all duration-100 ${
+                            index === currentImageIndex
+                              ? "ring-2 ring-primary scale-105"
+                              : "hover:scale-105 opacity-70 hover:opacity-100"
+                          }`}
+                          whileHover={{ scale: 1.08 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ duration: 0.08 }}
+                        >
+                          <img
+                            src={`https://assets.abaly.ch/${img}`}
+                            alt={`Thumbnail ${index + 1}`}
+                            className="w-12 h-12 object-cover"
+                          />
+                        </motion.button>
+                      ))}
+                    </motion.div>
+                  </div>
                 ) : (
                   <>
-                    {/* Single image - direct motion.img with layoutId */}
-                    <div className="relative w-full lg:w-auto flex items-center justify-center">
-                      <motion.img
-                        layoutId={`card-${active.title}-${id}`}
+                    {/* Single image - container with layoutId contains both image and title */}
+                    <motion.div
+                      layoutId={`card-${active.title}-${id}`}
+                      className="relative inline-block pointer-events-auto"
+                      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                    >
+                      <img
                         src={`https://assets.abaly.ch/${images[0]}`}
                         alt={active.title}
-                        className="w-auto h-auto max-w-full object-contain rounded-lg"
-                        style={{ maxHeight: "95dvh" }}
-                        transition={{ duration: 0.3 }}
+                        className="w-auto h-auto max-w-full max-h-[95dvh] object-contain rounded-lg cursor-pointer"
                       />
-                    </div>
-
-                    {/* Shopping cart button for single image */}
-                    {active.storeUrl && (
-                      <motion.div
-                        layoutId={`buy-button-${active.title}-${id}`}
-                        className="absolute top-2 right-2 z-[10001] pointer-events-auto"
-                        layout
-                        transition={{
-                          layout: {
-                            duration: 0.4,
-                            ease: [0.25, 0.1, 0.25, 1],
-                          },
-                        }}
-                      >
-                        <motion.button
-                          className="flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors duration-200 rounded-lg cursor-pointer border border-gray-200/50 hover:border-gray-300/50 overflow-hidden"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(active.storeUrl, "_blank");
+                      
+                      {/* Shopping cart button for single image */}
+                      {active.storeUrl && (
+                        <motion.div
+                          layoutId={`buy-button-${active.title}-${id}`}
+                          className="absolute top-2 right-2 z-[10001] pointer-events-auto"
+                          layout
+                          transition={{
+                            layout: {
+                              duration: 0.4,
+                              ease: [0.25, 0.1, 0.25, 1],
+                            },
                           }}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          transition={{ duration: 0.2, ease: "easeOut" }}
                         >
-                          <motion.div
-                            layoutId={`buy-icon-${active.title}-${id}`}
+                          <motion.button
+                            className="flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors duration-200 rounded-lg cursor-pointer border border-gray-200/50 hover:border-gray-300/50 overflow-hidden"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(active.storeUrl, "_blank");
+                            }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
                           >
-                            <ShoppingCart className="h-4 w-4 text-gray-700" />
-                          </motion.div>
-                        </motion.button>
-                      </motion.div>
-                    )}
+                            <motion.div
+                              layoutId={`buy-icon-${active.title}-${id}`}
+                            >
+                              <ShoppingCart className="h-4 w-4 text-gray-700" />
+                            </motion.div>
+                          </motion.button>
+                        </motion.div>
+                      )}
+                      
+                      {/* Title overlay for single image */}
+                      {active.title && active.showTitle && (
+                        <div
+                          className={`absolute inset-x-0 bottom-0 p-2 md:p-2 ${
+                            active.darkText ? "text-black" : "text-white"
+                          }`}
+                        >
+                          <h5
+                            className="pt-2 pb-2 px-4 backdrop-blur-sm w-fit rounded-[0.8rem] overflow-hidden text-base"
+                          >
+                            {active.title}
+                          </h5>
+                        </div>
+                      )}
+                    </motion.div>
                   </>
                 )}
-
-                <div className="h-[3rem] md:h-[5rem] absolute bottom-0 left-0 w-full" />
-
-                {/* Thumbnail navigation for multiple images */}
-                {hasMultipleImages && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={{ delay: 0 }}
-                    className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-[10002] flex gap-2 bg-black/60 backdrop-blur-md rounded-lg p-3 pointer-events-auto"
-                  >
-                    {images.map((img, index) => (
-                      <motion.button
-                        key={index}
-                        onClick={() => {
-                          setCurrentImageIndex(index);
-                          scrollToImage(index);
-                        }}
-                        className={`relative overflow-hidden rounded-md transition-all duration-100 ${
-                          index === currentImageIndex
-                            ? "ring-2 ring-primary scale-105"
-                            : "hover:scale-105 opacity-70 hover:opacity-100"
-                        }`}
-                        whileHover={{ scale: 1.08 }}
-                        whileTap={{ scale: 0.95 }}
-                        transition={{ duration: 0.08 }}
-                      >
-                        <img
-                          src={`https://assets.abaly.ch/${img}`}
-                          alt={`Thumbnail ${index + 1}`}
-                          className="w-12 h-12 object-cover"
-                        />
-                      </motion.button>
-                    ))}
-                  </motion.div>
-                )}
-
-                {active.title && active.showTitle && (
-                  <div
-                    className={`absolute inset-x-0 bottom-0 p-2 md:p-2 ${
-                      active.darkText ? "text-black" : "text-white"
-                    }`}
-                  >
-                    <h5
-                      className="pt-2 pb-2 px-4 backdrop-blur-sm w-fit rounded-4xl overflow-hidden text-base "
-                    >
-                      {active.title}
-                    </h5>
-                  </div>
-                )}
               </div>
+              
+              {/* Description section */}
               {active.description && (
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.4 }}
-                  className="p-4 overflow-y-auto md:max-h-[95dvh] flex-1 md:flex-initial w-full pointer-events-auto"
+                  className="p-4 overflow-y-auto max-h-[30vh] flex-shrink-0 pointer-events-auto"
                 >
                   <p className="text-md">{active.description}</p>
                 </motion.div>
               )}
             </motion.div>
-          </div>
+          </motion.div>
         </>
       )}
     </AnimatePresence>,
