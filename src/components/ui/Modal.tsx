@@ -144,17 +144,22 @@ export const PortalCard: React.FC<PortalCardProps> = ({
               exit: { duration: 0.1, delay: 0 }
             }}
             className="fixed inset-0 bg-background/20 backdrop-blur-lg h-full w-full z-[9999] cursor-pointer"
+            style={{ padding: 0, margin: 0 }}
             onClick={onClose}
           />
           <motion.div
             key="modal-backdrop"
-            className="fixed inset-0 z-[10000] flex items-center justify-center p-2 lg:p-4 pointer-events-none"
+            className="fixed inset-0 z-[10000] flex items-center justify-center pointer-events-none"
+            style={{ padding: 0, margin: 0 }}
             onClick={onClose}
           >
             <motion.div
               ref={ref}
               key="modal-content"
-              className="relative flex flex-col h-auto w-fit max-w-7xl pointer-events-none cursor-default"
+              className={`relative flex flex-col h-auto pointer-events-none cursor-default ${
+                hasMultipleImages ? 'w-full max-w-none' : 'w-fit max-w-none'
+              }`}
+              style={{ padding: 0, margin: 0 }}
             >
               {/* Close button */}
               <motion.button
@@ -170,9 +175,9 @@ export const PortalCard: React.FC<PortalCardProps> = ({
               </motion.button>
 
               {/* Main content container */}
-              <div className="relative flex items-center justify-center w-full h-auto pointer-events-none">
+              <div className="relative flex items-center justify-center w-full h-auto pointer-events-none cursor-pointer">
                 {hasMultipleImages ? (
-                  <div className="relative w-full max-w-full pointer-events-auto" onClick={(e) => e.stopPropagation()}>
+                  <div className="relative w-full pointer-events-auto">
                     {/* Carousel container */}
                     <motion.div
                       ref={carouselRef}
@@ -249,7 +254,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                                   {/* Title overlay for multiple images */}
                                   {active.title && active.showTitle && (
                                     <div
-                                      className={`absolute inset-x-0 bottom-20 p-2 md:p-2 ${
+                                      className={`absolute inset-x-0 bottom-[4.5rem] p-2 md:p-2 ${
                                         active.darkText ? "text-black" : "text-white"
                                       }`}
                                     >
@@ -276,9 +281,9 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                           </div>
                         ))}
                       </div>
-                    </motion.div>
+                                          </motion.div>
 
-                    {/* Navigation buttons */}
+                    {/* Navigation arrows positioned relative to carousel */}
                     <motion.button
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -317,6 +322,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                       exit={{ opacity: 0, y: 20 }}
                       transition={{ delay: 0 }}
                       className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-[10002] flex gap-2 bg-black/60 backdrop-blur-md rounded-lg p-3 pointer-events-auto"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       {images.map((img, index) => (
                         <motion.button
