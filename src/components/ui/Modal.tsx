@@ -46,13 +46,16 @@ export const PortalCard: React.FC<PortalCardProps> = ({
   const [isClient, setIsClient] = React.useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
-
   const images = active
     ? Array.isArray(active.image)
       ? active.image
       : [active.image]
     : [];
   const hasMultipleImages = images.length > 1;
+  
+  // Always use layout animation for opening
+  // For closing: only use layout animation if single image OR multi-image on first image
+  const shouldUseLayoutAnimationOnExit = !hasMultipleImages || currentImageIndex === 0;
 
   const scrollToImage = (index: number) => {
     if (carouselRef.current) {
@@ -140,8 +143,8 @@ export const PortalCard: React.FC<PortalCardProps> = ({
             exit={{ opacity: 0 }}
             transition={{ 
               duration: 0.2, 
-              delay: 0.1,
-              exit: { duration: 0.1, delay: 0 }
+              delay: shouldUseLayoutAnimationOnExit ? 0.1 : 0,
+              exit: { duration: shouldUseLayoutAnimationOnExit ? 0.1 : 0.2, delay: 0 }
             }}
             className="fixed inset-0 bg-background/20 backdrop-blur-lg h-full w-full z-[9999] cursor-pointer"
             style={{ padding: 0, margin: 0 }}
@@ -152,6 +155,12 @@ export const PortalCard: React.FC<PortalCardProps> = ({
             className="fixed inset-0 z-[10000] flex items-center justify-center pointer-events-none"
             style={{ padding: 0, margin: 0 }}
             onClick={onClose}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ 
+              opacity: shouldUseLayoutAnimationOnExit ? 1 : 0,
+              transition: { duration: shouldUseLayoutAnimationOnExit ? 0 : 0.2 }
+            }}
           >
             <motion.div
               ref={ref}
@@ -161,21 +170,10 @@ export const PortalCard: React.FC<PortalCardProps> = ({
               }`}
               style={{ padding: 0, margin: 0 }}
             >
-              {/* Close button */}
-              <motion.button
-                key={`button-${active.title}-${id}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.15 }}
-                className="absolute top-2 left-2 lg:hidden flex items-center justify-center z-[10002] bg-background/60 backdrop-blur-md rounded-[0.8rem] h-10 w-10"
-                onClick={onClose}
-              >
-                <CloseIcon />
-              </motion.button>
+
 
               {/* Main content container */}
-              <div className="relative flex items-center justify-center w-full h-auto pointer-events-none cursor-pointer">
+              <div className="relative flex items-center justify-center w-full h-auto pointer-events-none cursor-pointer" onClick={onClose}>
                 {hasMultipleImages ? (
                   <div className="relative w-full pointer-events-auto">
                     {/* Carousel container */}
@@ -203,6 +201,9 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                                   layoutId={`card-${active.title}-${id}`}
                                   className="relative"
                                   transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                                  {...(!shouldUseLayoutAnimationOnExit && {
+                                    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } }
+                                  })}
                                 >
                                   <img
                                     src={`https://assets.abaly.ch/${img}`}
@@ -212,44 +213,62 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                                     draggable={false}
                                   />
                                   
-                                  {/* Shopping cart button positioned relative to each image */}
-                                  {active.storeUrl &&
-                                    index === currentImageIndex && (
-                                      <motion.div
-                                        layoutId={`buy-button-${active.title}-${id}`}
-                                        className="absolute top-2 right-2 z-[10001] pointer-events-auto"
-                                        layout
+                                  {/* Buttons for first image */}
+                                  {active.storeUrl && (
+                                    <motion.div
+                                      layoutId={`buy-button-${active.title}-${id}`}
+                                      className="absolute top-2 left-2 z-[10001] pointer-events-auto"
+                                      layout
+                                      transition={{
+                                        layout: {
+                                          duration: 0.4,
+                                          ease: [0.25, 0.1, 0.25, 1],
+                                        },
+                                      }}
+                                    >
+                                      <motion.button
+                                        className="flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors duration-200 rounded-lg cursor-pointer border border-gray-200/50 hover:border-gray-300/50 overflow-hidden"
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          window.open(active.storeUrl, "_blank");
+                                        }}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
                                         transition={{
-                                          layout: {
-                                            duration: 0.4,
-                                            ease: [0.25, 0.1, 0.25, 1],
-                                          },
+                                          duration: 0.2,
+                                          ease: "easeOut",
                                         }}
                                       >
-                                        <motion.button
-                                          className="flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors duration-200 rounded-lg cursor-pointer border border-gray-200/50 hover:border-gray-300/50 overflow-hidden"
-                                          onClick={(e) => {
-                                            e.stopPropagation();
-                                            window.open(
-                                              active.storeUrl,
-                                              "_blank"
-                                            );
-                                          }}
-                                          whileHover={{ scale: 1.05 }}
-                                          whileTap={{ scale: 0.95 }}
-                                          transition={{
-                                            duration: 0.2,
-                                            ease: "easeOut",
-                                          }}
+                                        <motion.div
+                                          layoutId={`buy-icon-${active.title}-${id}`}
                                         >
-                                          <motion.div
-                                            layoutId={`buy-icon-${active.title}-${id}`}
-                                          >
-                                            <ShoppingCart className="h-4 w-4 text-gray-700" />
-                                          </motion.div>
-                                        </motion.button>
-                                      </motion.div>
-                                    )}
+                                          <ShoppingCart className="h-4 w-4 text-gray-700" />
+                                        </motion.div>
+                                      </motion.button>
+                                    </motion.div>
+                                  )}
+                                  
+                                  {/* Close button for first image */}
+                                  <motion.div
+                                    className="absolute top-2 right-2 z-[10001] pointer-events-auto"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.15 }}
+                                  >
+                                    <motion.button
+                                      className="lg:hidden flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors duration-200 rounded-lg cursor-pointer border border-gray-200/50 hover:border-gray-300/50 overflow-hidden"
+                                      onClick={onClose}
+                                      whileHover={{ scale: 1.05 }}
+                                      whileTap={{ scale: 0.95 }}
+                                      transition={{
+                                        duration: 0.2,
+                                        ease: "easeOut",
+                                      }}
+                                    >
+                                      <CloseIcon />
+                                    </motion.button>
+                                  </motion.div>
 
                                   {/* Title overlay for multiple images */}
                                   {active.title && active.showTitle && (
@@ -275,6 +294,43 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                                     style={{ maxHeight: "95dvh" }}
                                     draggable={false}
                                   />
+                                  
+                                  {/* Buttons for other images */}
+                                  {active.storeUrl && (
+                                    <div className="absolute top-2 left-2 z-[10001] pointer-events-auto">
+                                      <motion.button
+                                        className="flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors duration-200 rounded-lg cursor-pointer border border-gray-200/50 hover:border-gray-300/50 overflow-hidden"
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          window.open(active.storeUrl, "_blank");
+                                        }}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        transition={{
+                                          duration: 0.2,
+                                          ease: "easeOut",
+                                        }}
+                                      >
+                                        <ShoppingCart className="h-4 w-4 text-gray-700" />
+                                      </motion.button>
+                                    </div>
+                                  )}
+                                  
+                                  {/* Close button for other images */}
+                                  <div className="absolute top-2 right-2 z-[10001] pointer-events-auto">
+                                    <motion.button
+                                      className="lg:hidden flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors duration-200 rounded-lg cursor-pointer border border-gray-200/50 hover:border-gray-300/50 overflow-hidden"
+                                      onClick={onClose}
+                                      whileHover={{ scale: 1.05 }}
+                                      whileTap={{ scale: 0.95 }}
+                                      transition={{
+                                        duration: 0.2,
+                                        ease: "easeOut",
+                                      }}
+                                    >
+                                      <CloseIcon />
+                                    </motion.button>
+                                  </div>
                                 </div>
                               )}
                             </div>
@@ -282,6 +338,8 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                         ))}
                       </div>
                                           </motion.div>
+
+
 
                     {/* Navigation arrows positioned relative to carousel */}
                     <motion.button
@@ -356,6 +414,9 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                       layoutId={`card-${active.title}-${id}`}
                       className="relative inline-block pointer-events-auto"
                       transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                      {...(!shouldUseLayoutAnimationOnExit && {
+                        exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } }
+                      })}
                     >
                       <img
                         src={`https://assets.abaly.ch/${images[0]}`}
@@ -363,11 +424,11 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                         className="w-auto h-auto max-w-full max-h-[95dvh] object-contain rounded-lg cursor-pointer"
                       />
                       
-                      {/* Shopping cart button for single image */}
+                      {/* Buttons for single image */}
                       {active.storeUrl && (
                         <motion.div
                           layoutId={`buy-button-${active.title}-${id}`}
-                          className="absolute top-2 right-2 z-[10001] pointer-events-auto"
+                          className="absolute top-2 left-2 z-[10001] pointer-events-auto"
                           layout
                           transition={{
                             layout: {
@@ -394,6 +455,25 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                           </motion.button>
                         </motion.div>
                       )}
+                      
+                      {/* Close button for single image */}
+                      <motion.div
+                        className="absolute top-2 right-2 z-[10001] pointer-events-auto"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.15 }}
+                      >
+                        <motion.button
+                          className="lg:hidden flex items-center justify-center w-10 h-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors duration-200 rounded-lg cursor-pointer border border-gray-200/50 hover:border-gray-300/50 overflow-hidden"
+                          onClick={onClose}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                        >
+                          <CloseIcon />
+                        </motion.button>
+                      </motion.div>
                       
                       {/* Title overlay for single image */}
                       {active.title && active.showTitle && (

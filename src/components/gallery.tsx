@@ -49,14 +49,14 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
                   
                 />
                 {Array.isArray(card.image) && card.image.length > 1 && (
-                  <div className="absolute top-2 left-2 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md">
+                  <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md">
                     +{card.image.length - 1}
                   </div>
                 )}
                 {card.storeUrl && (
                   <motion.div
                     layoutId={`buy-button-${card.title}-${id}`}
-                    className="absolute top-2 right-2"
+                    className="absolute top-2 left-2"
                     transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
                   >
                     <motion.button
