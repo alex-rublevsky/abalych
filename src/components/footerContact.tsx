@@ -1,5 +1,5 @@
-import FramerMagnetic from "./framerMagnetic";
-import { AnimatedGroup } from "./motion_primitives/animated-group";
+import FramerMagnetic from "./FramerMagnetic";
+//import { AnimatedGroup } from "./motion_primitives/animated-group";
 
 export default function FooterContact() {
   return (
@@ -24,9 +24,10 @@ export default function FooterContact() {
               <h5 className="opacity-50 -translate-y-5 md:translate-y-0 lg:translate-y-10 text-white">
                 Contact me
               </h5>
-              <AnimatedGroup
-                amount={0}
-                delay={0}
+              {/* TODO: used to be animated group before */}
+              <div
+                //amount={0}
+                //delay={0}
                 className="pb-20 gap-x-16 grid grid-cols-2 gap-y-10 sm:gap-y-6 sm:flex sm:flex-wrap md:gap-0 justify-center relative"
               >
                 <FramerMagnetic>
@@ -77,7 +78,7 @@ export default function FooterContact() {
                     </svg>
                   </a>
                 </FramerMagnetic>
-              </AnimatedGroup>
+              </div>
             </div>
           </div>
         </div>

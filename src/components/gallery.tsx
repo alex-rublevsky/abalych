@@ -1,8 +1,8 @@
 import { useId, useState } from "react";
 import { motion } from "motion/react";
 import { type CardData } from "../data/gallery";
-import { PortalCard } from "./ui/Modal";
-import ScatterText from "./ui/ScatterText";
+import { PortalCard } from "./Modal";
+import ScatterText from "./ScatterText";
 import { ShoppingCart } from "lucide-react";
 
 interface GalleryProps {
