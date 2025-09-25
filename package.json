@@ -7,22 +7,22 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "pnpm run build && vite preview",
+    "deploy": "pnpm run build && wrangler pages deploy dist"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.13",
     "clsx": "^2.1.1",
     "lucide-react": "^0.544.0",
     "motion": "^12.23.19",
     "motion-plus": "^1.5.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.13",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.13.4",
     "@eslint/js": "^9.36.0",
+    "@tailwindcss/vite": "^4.1.13",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.3",
@@ -31,9 +31,13 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.4.0",
+    "tailwindcss": "^4.1.13",
+    "tailwindcss-intersect": "^2.2.0",
+    "tailwindcss-motion": "^1.1.1",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.44.0",
-    "vite": "npm:rolldown-vite@7.1.12"
+    "vite": "npm:rolldown-vite@7.1.12",
+    "wrangler": "^4.39.0"
   },
   "pnpm": {
     "overrides": {
