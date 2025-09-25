@@ -41,10 +41,24 @@ function App() {
     const timeout = setTimeout(() => {
       console.warn('Loading timeout reached, showing page');
       setIsHeroImageLoaded(true);
-    }, 7000);
+    }, 10000);
 
     return () => clearTimeout(timeout);
   }, []);
+
+  // Disable scrolling while loading
+  useEffect(() => {
+    if (!isHeroImageLoaded) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isHeroImageLoaded]);
   
   return (
     <>
