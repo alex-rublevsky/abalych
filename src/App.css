@@ -20,7 +20,17 @@
     opacity: 1;
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.75;
+  }
+}
+
+/* Pulse animation for symbolA loaderScreen */
+@keyframes pulseSymbolA {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
   }
 }
 
