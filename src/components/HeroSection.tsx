@@ -1,11 +1,13 @@
 import ScatterText from "./ScatterText";
 import SymbolA from "./SymbolA";
+import { HERO_IMAGE_URL } from "../data/constants";
 
 interface HeroProps {
   isMobile: boolean;
 }
 
 export default function HeroSection({ isMobile }: HeroProps) {
+
   return (
     <section className="relative h-[100dvh] w-screen overflow-x-hidden no-padding no-padding-bottom z-20">
       <div className="max-w-[120rem] mx-auto w-full h-full flex flex-col">
@@ -37,7 +39,7 @@ export default function HeroSection({ isMobile }: HeroProps) {
             color="#ffffff"
           />
           <img
-            src="https://assets.abaly.ch/hero.webp"
+            src={HERO_IMAGE_URL}
             alt="Kristina's portrait"
             className="w-full h-full object-contain object-bottom z-3"
           />
