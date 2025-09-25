@@ -28,11 +28,11 @@ export default function FooterContact() {
               <div
                 //amount={0}
                 //delay={0}
-                className="pb-20 gap-x-16 grid grid-cols-2 gap-y-10 sm:gap-y-6 sm:flex sm:flex-wrap md:gap-0 justify-center relative"
+                className="pb-20 gap-x-16 grid grid-cols-2 gap-y-10 sm:gap-y-6 sm:flex sm:flex-wrap md:gap-0 justify-center relative "
               >
                 <FramerMagnetic>
                   <a
-                    className="p-0 md:p-12 lg:p-20 flex align-middle justify-center cursor-pointer group"
+                    className="p-0 md:p-12 lg:p-20 flex align-middle justify-center cursor-pointer group intersect-once intersect:motion-preset-blur-up-lg motion-delay-0"
                     id="instagram"
                     href="https://www.instagram.com/abalych/"
                   >
@@ -47,7 +47,7 @@ export default function FooterContact() {
                 </FramerMagnetic>
                 <FramerMagnetic>
                   <a
-                    className="p-0 md:p-12 lg:p-20 flex align-middle justify-center cursor-pointer group"
+                    className="p-0 md:p-12 lg:p-20 flex align-middle justify-center cursor-pointer group intersect-once intersect:motion-preset-blur-up-lg motion-delay-100"
                     href="https://t.me/sosipisososipisos"
                     id="telegram"
                   >
@@ -63,7 +63,7 @@ export default function FooterContact() {
              
                 <FramerMagnetic>
                   <a
-                    className="p-0 md:p-12 lg:p-20 flex align-middle justify-center cursor-pointer group"
+                    className="p-0 md:p-12 lg:p-20 flex align-middle justify-center cursor-pointer group intersect-once intersect:motion-preset-blur-up-lg motion-delay-200"
                     href="mailto:kristina.abalymova@gmail.com"
                     id="mail"
                     target="_blank"

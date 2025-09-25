@@ -42,7 +42,7 @@ import {
         }
       >()
     );
-    const mousePositionRef = useMousePositionRef(containerRef);
+    const mousePositionRef = useMousePositionRef();
   
     const registerElement = useCallback(
       (id: string, element: HTMLDivElement, depth: number) => {

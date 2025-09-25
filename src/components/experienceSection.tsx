@@ -31,7 +31,7 @@ export default function ExperienceSection() {
               {section.entries.map((item: ExperienceEntry, index: number) => (
                 <div
                   key={index}
-                  className="bg-background backdrop-blur-lg z-[9999] group relative w-full rounded-xl overflow-hidden border-2 border-border px-8 py-12 mb-4 break-inside-avoid"
+                  className={`bg-background backdrop-blur-lg z-[9999] group relative w-full rounded-xl overflow-hidden border-2 border-border px-8 py-12 mb-4 break-inside-avoid intersect-once intersect:motion-preset-blur-up-lg motion-duration-1000 motion-delay-${index * 100}`}
                   onMouseMove={handleMouseMove}
                 >
                   <motion.div

@@ -24,11 +24,11 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
           //extraLarge={true}
         />
         <ul className="mx-auto w-full columns-2 lg:columns-3 2xl:columns-4 items-start gap-4">
-          {data.map((card) => (
+          {data.map((card, index) => (
             <motion.div
               key={card.title}
               onClick={() => setActive(card)}
-              className="mb-4 flex flex-col cursor-pointer break-inside-avoid"
+              className={`mb-4 flex flex-col cursor-pointer break-inside-avoid intersect-once intersect:motion-preset-blur-up-lg motion-duration-1000 motion-delay-${index * 100}`}
               onMouseEnter={() => setHoveredCard(card.title)}
               onMouseLeave={() => setHoveredCard(null)}
               whileHover={{ scale: 1.02 }}

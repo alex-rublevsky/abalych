@@ -25,7 +25,7 @@ export default function HeroSection({ isMobile }: HeroProps) {
           </div>
         </div>
 
-        <div className="relative w-fit mx-auto flex-1 flex flex-col justify-end">
+        <div className="relative w-full mx-auto flex-1 flex flex-col justify-end overflow-hidden">
           {/* TODO: fix the small symbl on small height large width devices */}
           <SymbolA
             className="absolute left-0 bottom-10 -rotate-25 h-[65vw] max-h-[60dvh] xl:max-h-[66dvh] z-[999] mix-blend-difference bg-blend-difference"

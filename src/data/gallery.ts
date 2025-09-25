@@ -1,4 +1,4 @@
-const storeUrlPrefix = "https://www.rublevsky.studio/product/";
+const storeUrlPrefix = "https://www.rublevsky.studio/store/";
 
 export interface CardData {
   image: string

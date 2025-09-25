@@ -1,11 +1,11 @@
-import { type RefObject, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 
 interface MousePosition {
   x: number
   y: number
 }
 
-export function useMousePositionRef(containerRef: RefObject<HTMLDivElement | null>) {
+export function useMousePositionRef() {
   const mousePositionRef = useRef<MousePosition>({ x: 0, y: 0 })
 
   useEffect(() => {
