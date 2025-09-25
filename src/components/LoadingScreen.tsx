@@ -15,7 +15,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible }) => {
     >
       <div className="flex flex-col items-center space-y-8">
         <div className="relative">
-          <div className="animate-pulse">
+          <div style={{ animation:"pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite" }}>
             <SymbolA
               className="h-24 w-24"
               color="currentColor"
