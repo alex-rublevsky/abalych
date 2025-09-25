@@ -11,11 +11,12 @@
     "deploy": "pnpm run build && wrangler pages deploy dist"
   },
   "dependencies": {
+    "blurhash": "^2.0.5",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.544.0",
     "motion": "^12.23.19",
     "motion-plus": "^1.5.1",
     "react": "^19.1.1",
+    "react-blurhash": "^0.3.0",
     "react-dom": "^19.1.1",
     "tailwind-merge": "^3.3.1"
   },

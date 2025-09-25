@@ -1,5 +1,7 @@
 import { useScroll, useTransform, motion } from "motion/react";
 import { useRef } from "react";
+import ImageComponent from "./ImageComponent";
+import { GRAFFITI_WALL_IMAGE } from "../data/constants";
 
 interface ParallaxGraffitiProps {
   //height?: string;
@@ -28,10 +30,17 @@ export default function ParallaxGraffiti({
 
   return isMobile ? (
     <div className="z-[999]">
-      <img
-        className="h-[50vw] w-full z-[999] relative"
-        src="https://assets.abaly.ch/graffiti-wall.jpg"
-      />
+      <div 
+        className="w-full"
+        style={{ aspectRatio: GRAFFITI_WALL_IMAGE.ratio }}
+      >
+        <ImageComponent
+          src={GRAFFITI_WALL_IMAGE.url}
+          alt="Graffiti wall background"
+          blurHash={GRAFFITI_WALL_IMAGE.blurHash}
+          className="w-full h-full object-cover z-[999] relative"
+        />
+      </div>
     </div>
   ) : (
     <div
@@ -42,18 +51,17 @@ export default function ParallaxGraffiti({
         clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
       }}
     >
-      <div className="absolute inset-0 w-full h-full">
-        <motion.div
-          style={{ y }}
-          className="w-full h-[120%] -translate-y-[10%]"
-        >
-          <img
-            src="https://assets.abaly.ch/graffiti-wall.webp"
-            alt="Graffiti wall background"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-      </div>
+      <motion.div 
+        className="absolute inset-0 w-full h-[120%] -translate-y-[10%]"
+        style={{ y }}
+      >
+        <ImageComponent
+          src={GRAFFITI_WALL_IMAGE.url}
+          alt="Graffiti wall background"
+          blurHash={GRAFFITI_WALL_IMAGE.blurHash}
+          className="w-full h-full object-cover"
+        />
+      </motion.div>
     </div>
   );
 }

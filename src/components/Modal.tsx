@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import { type CardData } from "../data/gallery";
 import { useOutsideClick } from "../hooks/use-outside-click";
 
-import { ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
+import { ShoppingCartIcon, ChevronLeftIcon, ChevronRightIcon } from "./Icons";
 
 interface PortalCardProps {
   active: CardData | null;
@@ -242,7 +242,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                                         <motion.div
                                           layoutId={`buy-icon-${active.title}-${id}`}
                                         >
-                                          <ShoppingCart className="h-4 w-4 text-gray-700" />
+                                          <ShoppingCartIcon className="h-4 w-4 text-gray-700" />
                                         </motion.div>
                                       </motion.button>
                                     </motion.div>
@@ -311,7 +311,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                                           ease: "easeOut",
                                         }}
                                       >
-                                        <ShoppingCart className="h-4 w-4 text-gray-700" />
+                                        <ShoppingCartIcon className="h-4 w-4 text-gray-700" />
                                       </motion.button>
                                     </div>
                                   )}
@@ -355,7 +355,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <ChevronLeft className="h-6 w-6" />
+                      <ChevronLeftIcon className="h-6 w-6" />
                     </motion.button>
                     <motion.button
                       initial={{ opacity: 0, x: 20 }}
@@ -370,7 +370,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <ChevronRight className="h-6 w-6" />
+                      <ChevronRightIcon className="h-6 w-6" />
                     </motion.button>
 
                     {/* Thumbnail navigation for multiple images */}
@@ -450,7 +450,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
                             <motion.div
                               layoutId={`buy-icon-${active.title}-${id}`}
                             >
-                              <ShoppingCart className="h-4 w-4 text-gray-700" />
+                              <ShoppingCartIcon className="h-4 w-4 text-gray-700" />
                             </motion.div>
                           </motion.button>
                         </motion.div>

@@ -4,6 +4,26 @@
 
 @plugin "tailwindcss-intersect";
 
+/* Animation for hiding blur hash after delay */
+@keyframes hideAfterDelay {
+  0%, 99.99% {
+    display: block;
+  }
+  100% {
+    display: none;
+  }
+}
+
+/* Pulse animation for loading image */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -263,32 +283,6 @@
   to { transform: translateY(5rem) }
 }
 
-@keyframes color-fade {
-  0% { 
-    color: #9ca3af; 
-    opacity: 0.4; 
-  }
-  25% { 
-    color: #6b7280; 
-    opacity: 0.7; 
-  }
-  50% { 
-    color: #374151; 
-    opacity: 1; 
-  }
-  75% { 
-    color: #6b7280; 
-    opacity: 0.7; 
-  }
-  100% { 
-    color: #9ca3af; 
-    opacity: 0.4; 
-  }
-}
-
-.animate-color-fade {
-  animation: color-fade 2.5s ease-in-out infinite;
-}
 
 ::view-transition-new(lightbox) {
   animation: 300ms ease 50ms both fade-in, 

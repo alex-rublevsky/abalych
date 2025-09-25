@@ -3,7 +3,9 @@ import { motion } from "motion/react";
 import { type CardData } from "../data/gallery";
 import { PortalCard } from "./Modal";
 import ScatterText from "./ScatterText";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCartIcon } from "./Icons";
+
+import ImageComponent from "./ImageComponent";
 
 interface GalleryProps {
   data: CardData[];
@@ -39,15 +41,20 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
                 className="relative rounded-[1.3rem] overflow-hidden"
                 transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                <img
-                  alt={card.title}
-                  src={`https://assets.abaly.ch/${Array.isArray(card.image) ? card.image[0] : card.image}`}
-                  className={`h-auto w-full object-cover object-top transition-transform duration-300 
-                    ${
-                    hoveredCard === card.title ? "scale-100" : "scale-100"
-                  }`}
-                  
-                />
+                <div 
+                  className="w-full"
+                  style={{ aspectRatio: card.ratio || '1' }}
+                >
+                  <ImageComponent
+                    blurHash={card.blurHash}
+                    alt={card.title}
+                    src={`https://assets.abaly.ch/${Array.isArray(card.image) ? card.image[0] : card.image}`}
+                    className={`w-full h-full object-cover object-top transition-transform duration-300 
+                      ${
+                      hoveredCard === card.title ? "scale-100" : "scale-100"
+                    }`}
+                  />
+                </div>
                 {Array.isArray(card.image) && card.image.length > 1 && (
                   <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md">
                     +{card.image.length - 1}
@@ -70,7 +77,7 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
                       transition={{ duration: 0.2, ease: "easeOut" }}
                     >
                       <motion.div layoutId={`buy-icon-${card.title}-${id}`}>
-                        <ShoppingCart className="h-4 w-4 text-gray-700" />
+                        <ShoppingCartIcon className="h-4 w-4 text-gray-700" />
                       </motion.div>
                     </motion.button>
                   </motion.div>

@@ -1,4 +1,6 @@
+import { FOOTER_IMAGE_URL } from "../data/constants";
 import FramerMagnetic from "./FramerMagnetic";
+import ImageComponent from "./ImageComponent";
 //import { AnimatedGroup } from "./motion_primitives/animated-group";
 
 export default function FooterContact() {
@@ -6,8 +8,9 @@ export default function FooterContact() {
     <section className="w-full relative h-[100dvh] md:h-[100dvh] no-padding no-padding-bottom z-[100] overflow-hidden">
       <div className="relative w-full h-full">
         {/* Background image */}
-        <img
-          src="https://assets.abaly.ch/forest-portrait.jpg"
+        <ImageComponent
+          src={FOOTER_IMAGE_URL.url}
+          blurHash={FOOTER_IMAGE_URL.blurHash}
           alt="forest portrait"
           className="absolute inset-0 w-full h-full object-cover"
         />

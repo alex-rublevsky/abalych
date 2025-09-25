@@ -1,13 +1,13 @@
 import { useEffect, useId, useState } from "react";
-import { motion, stagger, useAnimate } from "motion/react";
+import { motion } from "motion/react";
 import Floating, { FloatingElement } from "./ParallaxFloating";
 import { type CardData, stickerGalleryData } from "../data/gallery";
 import { PortalCard } from "./Modal";
 import ScatterText from "./ScatterText";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCartIcon } from "./Icons";
+import ImageComponent from "./ImageComponent";
 
 export const FloatingSection = () => {
-  const [scope, animate] = useAnimate();
   const [active, setActive] = useState<CardData | null>(null);
   const [isClient, setIsClient] = useState(false);
   const id = useId();
@@ -16,18 +16,7 @@ export const FloatingSection = () => {
     setIsClient(true);
   }, []);
 
-  useEffect(() => {
-    if (!scope.current || !isClient) return;
-
-    const images = scope.current.querySelectorAll("img");
-    if (images.length === 0) return;
-
-    animate(
-      images,
-      { opacity: [0, 1] },
-      { duration: 0.5, delay: stagger(0.15) }
-    );
-  }, [animate, isClient]);
+  // Removed the stagger animation that was conflicting with ImageComponent transitions
 
   if (!isClient) {
     return null;
@@ -37,7 +26,6 @@ export const FloatingSection = () => {
     <div className="relative my-32">
       <div
         className="flex w-full min-h-[65rem] md:h-screen justify-center items-center"
-        ref={scope}
       >
         <motion.div
           className="z-50 text-center space-y-4 items-center flex flex-col"
@@ -101,17 +89,13 @@ export const FloatingSection = () => {
                       transition={{ duration: 0.2, ease: "easeOut" }}
                     >
                       <motion.div layoutId={`buy-icon-${card.title}-${id}`}>
-                        <ShoppingCart className="h-4 w-4 text-gray-700" />
+                        <ShoppingCartIcon className="h-4 w-4 text-gray-700" />
                       </motion.div>
                     </motion.button>
                   </motion.div>
                 )}
-                <motion.img
+                <motion.div
                   layoutId={`image-${card.title}-${id}`}
-                  //initial={{ opacity: 0 }}
-                  src={`https://assets.abaly.ch/${card.image}`}
-                  alt={card.title}
-                  className={getSizeClass(index)}
                   variants={{
                     initial: { scale: 1 },
                     hover: { scale: 1 },
@@ -120,7 +104,16 @@ export const FloatingSection = () => {
                   transition={{
                     layout: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
                   }}
-                />
+                  style={{ aspectRatio: card.ratio }}
+                  className={getSizeClass(index)}
+                >
+                  <ImageComponent
+                    src={`https://assets.abaly.ch/${card.image}`}
+                    alt={card.title}
+                    blurHash={card.blurHash}
+                    className="w-full h-full object-cover cursor-pointer rounded-lg"
+                  />
+                </motion.div>
 
                 {active?.title === card.title && active.description && (
                   <motion.div
@@ -187,19 +180,19 @@ function getPositionClass(index: number): string {
 }
 
 function getSizeClass(index: number): string {
-  const baseClasses = "object-cover cursor-pointer rounded-lg";
+  const baseClasses = "cursor-pointer rounded-lg overflow-hidden";
   const sizes = [
-    "w-28 h-auto md:w-44 lg:w-48 xl:w-52 2xl:w-72",
-    "w-28 h-auto md:w-48 lg:w-58 xl:w-68",
-    "w-28 h-auto sm:w-32 md:w-50 lg:w-58 xl:w-68 2xl:w-86",
-    "w-28 h-auto sm:w-42 md:w-58 lg:w-58 xl:w-62 2xl:w-82",
-    "w-28 h-auto sm:w-42 md:w-62 lg:w-78 xl:w-78 2xl:w-82",
-    "w-28 h-auto sm:w-42 md:w-58 lg:w-68 xl:w-78 2xl:w-82",
-    "w-28 h-auto sm:w-42 md:w-54 lg:w-54 xl:w-64 2xl:w-92",
-    "w-28 h-auto sm:w-42 md:w-54 lg:w-64 xl:w-78 2xl:w-82",
-    "w-28 h-auto sm:w-42 md:w-52 lg:w-64 2xl:w-92",
-    "w-28 h-auto sm:w-42 md:w-54 lg:w-64 2xl:w-72",
-    "w-28 h-auto sm:w-42 md:w-42 lg:w-64 2xl:w-68",
+    "w-28 md:w-44 lg:w-48 xl:w-52 2xl:w-72",
+    "w-28 md:w-48 lg:w-58 xl:w-68",
+    "w-28 sm:w-32 md:w-50 lg:w-58 xl:w-68 2xl:w-86",
+    "w-28 sm:w-42 md:w-58 lg:w-58 xl:w-62 2xl:w-82",
+    "w-28 sm:w-42 md:w-62 lg:w-78 xl:w-78 2xl:w-82",
+    "w-28 sm:w-42 md:w-58 lg:w-68 xl:w-78 2xl:w-82",
+    "w-28 sm:w-42 md:w-54 lg:w-54 xl:w-64 2xl:w-92",
+    "w-28 sm:w-42 md:w-54 lg:w-64 xl:w-78 2xl:w-82",
+    "w-28 sm:w-42 md:w-52 lg:w-64 2xl:w-92",
+    "w-28 sm:w-42 md:w-54 lg:w-64 2xl:w-72",
+    "w-28 sm:w-42 md:w-42 lg:w-64 2xl:w-68",
   ];
   return `${sizes[index]} ${baseClasses}`;
 }

@@ -8,14 +8,14 @@ interface LoadingScreenProps {
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible }) => {
   return (
     <div 
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-gray-50 dark:bg-gray-950 transition-opacity duration-1000 ease-out ${
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-1000 ease-out ${
         isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
+      style={{ backgroundColor: 'var(--background)' }}
     >
       <div className="flex flex-col items-center space-y-8">
-        {/* SymbolA with color fade animation */}
         <div className="relative">
-          <div className="animate-color-fade">
+          <div className="animate-pulse">
             <SymbolA
               className="h-24 w-24"
               color="currentColor"
