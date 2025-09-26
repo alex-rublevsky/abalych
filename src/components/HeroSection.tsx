@@ -1,5 +1,5 @@
 import ScatterText from "./ScatterText";
-import SymbolA from "./SymbolA";
+// import SymbolA from "./SymbolA";
 import { HERO_IMAGE_URL } from "../data/constants";
 
 interface HeroProps {
