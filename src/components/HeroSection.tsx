@@ -28,8 +28,7 @@ export default function HeroSection({ isMobile }: HeroProps) {
         </div>
 
         <div className="relative w-full mx-auto flex-1 flex flex-col justify-end overflow-hidden">
-          {/* TODO: fix the small symbl on small height large width devices */}
-          <SymbolA
+          {/* <SymbolA
             className="absolute left-0 bottom-10 -rotate-25 h-[65vw] max-h-[60dvh] xl:max-h-[66dvh] z-[999] mix-blend-difference bg-blend-difference"
             color="#ffffff"
             //layoutId="hero-symbol-a"
@@ -37,7 +36,7 @@ export default function HeroSection({ isMobile }: HeroProps) {
           <SymbolA
             className="absolute left-0 bottom-10 -rotate-25 h-[65vw] max-h-[60dvh] xl:max-h-[66dvh] -z-[1]"
             color="#ffffff"
-          />
+          /> */}
           <img
             src={HERO_IMAGE_URL}
             alt="Kristina's portrait"
