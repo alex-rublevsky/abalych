@@ -18,13 +18,13 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ isVisible }) => {
           <div style={{ animation:"pulseSymbolA 2s cubic-bezier(0.4, 0, 0.6, 1) infinite" }}>
             <SymbolA
               className="h-24 w-24"
-              color="currentColor"
+              color="var(--foreground)"
             />
           </div>
         </div>
         
         {/* Optional loading text */}
-        <p className="text-sm text-gray-600 dark:text-gray-400 font-light">
+        <p className="text-sm text-muted-foreground font-light">
           Loading...
         </p>
       </div>
