@@ -3,40 +3,14 @@ import { AnimatePresence, motion } from "motion/react";
 import { createPortal } from "react-dom";
 import { type CardData } from "../data/gallery";
 import { useOutsideClick } from "../hooks/use-outside-click";
-
-import { ShoppingCartIcon, ChevronLeftIcon, ChevronRightIcon } from "./Icons";
-
-interface PortalCardProps {
+import { ShoppingCartIcon, ChevronLeftIcon, ChevronRightIcon, CloseIcon } from "./Icons";
+interface ModalProps {
   active: CardData | null;
   onClose: () => void;
   id: string;
 }
 
-export const CloseIcon = () => {
-  return (
-    <motion.svg
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0.05 } }}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="size-7 text-black z-999999"
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M18 6l-12 12" />
-      <path d="M6 6l12 12" />
-    </motion.svg>
-  );
-};
-
-export const PortalCard: React.FC<PortalCardProps> = ({
+export const Modal: React.FC<ModalProps> = ({
   active,
   onClose,
   id,
@@ -92,23 +66,7 @@ export const PortalCard: React.FC<PortalCardProps> = ({
     setIsClient(true);
   }, []);
 
-//   useEffect(() => {
-//     if (!isClient) return;
 
-//     lenisRef.current = (window as any).lenis;
-
-//     if (active && lenisRef.current) {
-//       lenisRef.current.stop();
-//     } else if (lenisRef.current) {
-//       lenisRef.current.start();
-//     }
-
-//     return () => {
-//       if (lenisRef.current) {
-//         lenisRef.current.start();
-//       }
-//     };
-//   }, [active, isClient]);
 
   useOutsideClick(ref, onClose);
 

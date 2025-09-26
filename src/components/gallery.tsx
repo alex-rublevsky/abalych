@@ -1,7 +1,7 @@
 import { useId, useState } from "react";
-import { motion } from "motion/react";
+import { LayoutGroup, motion } from "motion/react";
 import { type CardData } from "../data/gallery";
-import { PortalCard } from "./Modal";
+import { Modal } from "./Modal";
 import ScatterText from "./ScatterText";
 import { ShoppingCartIcon } from "./Icons";
 
@@ -18,8 +18,8 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
   const id = useId();
 
   return (
-    <>
       <section className="no-padding-bottom">
+        <LayoutGroup>
         <ScatterText
           text={title}
           className="pt-32 pb-20 text-center"
@@ -99,9 +99,8 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
             </motion.div>
           ))}
         </ul>
+        <Modal active={active} onClose={() => setActive(null)} id={id} />
+        </LayoutGroup>
       </section>
-
-      <PortalCard active={active} onClose={() => setActive(null)} id={id} />
-    </>
   );
 }

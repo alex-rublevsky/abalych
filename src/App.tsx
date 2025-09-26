@@ -62,6 +62,7 @@ function App() {
   
   return (
     <>
+     <LoadingScreen isVisible={!isHeroImageLoaded} />
       <main>
         <Pattern/>
         <HeroSection isMobile={isMobile} />
@@ -79,7 +80,6 @@ function App() {
 
             <FooterContact />
       </main>
-      <LoadingScreen isVisible={!isHeroImageLoaded} />
     </>
   )
 }

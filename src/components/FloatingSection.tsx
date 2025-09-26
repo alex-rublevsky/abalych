@@ -2,7 +2,7 @@ import { useEffect, useId, useState } from "react";
 import { motion } from "motion/react";
 import Floating, { FloatingElement } from "./ParallaxFloating";
 import { type CardData, stickerGalleryData } from "../data/gallery";
-import { PortalCard } from "./Modal";
+import { Modal } from "./Modal";
 import ScatterText from "./ScatterText";
 import { ShoppingCartIcon } from "./Icons";
 import ImageComponent from "./ImageComponent";
@@ -129,7 +129,7 @@ export const FloatingSection = () => {
         </Floating>
       </div>
 
-      <PortalCard active={active} onClose={() => setActive(null)} id={id} />
+      <Modal active={active} onClose={() => setActive(null)} id={id} />
     </div>
   );
 };
