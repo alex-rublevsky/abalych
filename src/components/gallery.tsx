@@ -18,7 +18,7 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
   const id = useId();
 
   return (
-      <section className="no-padding-bottom">
+      <section className="pb-16 md:pb-28">
         <LayoutGroup>
         <ScatterText
           text={title}
