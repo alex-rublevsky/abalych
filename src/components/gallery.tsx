@@ -42,18 +42,39 @@ export function Gallery({ data, title = "Visual Experiments" }: GalleryProps) {
                 transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 <div 
-                  className="w-full"
+                  className="w-full relative"
                   style={{ aspectRatio: card.ratio || '1' }}
                 >
-                  <ImageComponent
-                    blurHash={card.blurHash}
-                    alt={card.title}
-                    src={`https://assets.abaly.ch/${Array.isArray(card.image) ? card.image[0] : card.image}`}
-                    className={`w-full h-full object-cover object-top transition-transform duration-300 
-                      ${
-                      hoveredCard === card.title ? "scale-100" : "scale-100"
-                    }`}
-                  />
+                  {Array.isArray(card.image) && card.image.length > 1 ? (
+                    <>
+                      {/* Bottom image (second image) */}
+                      <img
+                        //blurHash={card.blurHash}
+                        alt={card.title}
+                        src={`https://assets.abaly.ch/${card.image[1]}`}
+                        className="w-full h-full object-cover object-top absolute inset-0"
+                      />
+                      {/* Top image (first image) with hover dissolve effect */}
+                      <ImageComponent
+                        blurHash={card.blurHash}
+                        alt={card.title}
+                        src={`https://assets.abaly.ch/${card.image[0]}`}
+                        className={`w-full h-full object-cover object-top absolute inset-0 transition-opacity duration-500 ease-in-out ${
+                          hoveredCard === card.title ? "opacity-0" : "opacity-100"
+                        }`}
+                      />
+                    </>
+                  ) : (
+                    <ImageComponent
+                      blurHash={card.blurHash}
+                      alt={card.title}
+                      src={`https://assets.abaly.ch/${Array.isArray(card.image) ? card.image[0] : card.image}`}
+                      className={`w-full h-full object-cover object-top transition-transform duration-300 
+                        ${
+                        hoveredCard === card.title ? "scale-100" : "scale-100"
+                      }`}
+                    />
+                  )}
                 </div>
                 {Array.isArray(card.image) && card.image.length > 1 && (
                   <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md">
