@@ -74,7 +74,7 @@ export default function ScatterText({
   if (isMobile) {
     return (
       <h1
-        className={`${className || ""} font-graffiti text-foreground ${trackingLeading} ${sizes} w-fit`}
+        className={`${className || ""} font-graffiti text-foreground ${trackingLeading} ${sizes} w-fit intersect-once intersect:motion-preset-blur-up-lg motion-delay-400 motion-duration-1000`}
         style={style}
       >
         {text}
@@ -83,7 +83,7 @@ export default function ScatterText({
   }
 
   return (
-    <div className={`z-20 ${className || ""}`} ref={containerRef} style={style}>
+    <div className={`z-20 intersect-once intersect:motion-preset-blur-up-lg motion-delay-400 motion-duration-1000 ${className || ""}`} ref={containerRef} style={style}>
       <h1
         className={`h1 text-foreground font-graffiti ${trackingLeading} ${sizes}`}
       >
