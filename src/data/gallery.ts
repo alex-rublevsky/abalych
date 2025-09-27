@@ -1,7 +1,7 @@
 const storeUrlPrefix = "https://www.rublevsky.studio/store/";
 
 export interface CardData {
-  image: string
+  image: string | string[]
   blurHash: string
   title: string
   description?: string
@@ -113,8 +113,21 @@ export const mainGalleryData: CardData[] = [
     showTitle: false,
     blurHash: "LNC%4:WGD*t4~qxaM{WC?ct7M{WW",
     ratio:"1200/1800"
-
-  }
+  },
+  {
+    image: ["fungus-abstraction.webp","fungus-abstraction-photo.webp", "delusional-fungus.webp"],
+    title: "Fungus Abstraction",
+    showTitle: false,
+    blurHash: "L8AUmO02?]x?t*$$IANL8x~o4nnn",
+    ratio:"1462/1950"
+  },
+  {
+    image: ["u-have-to-be-delusional.webp", "u-have-to-be-delusional-photo.webp", "delusional-fungus.webp"],
+    title: "Pinecone Abstraction",
+    showTitle: false,
+    blurHash: "L$O1H~S[%3S^jFnmf$W:=*o3WTWW",
+    ratio:"2010/1500"
+  },
 ]
 
 export const stickerGalleryData: CardData[] = [
