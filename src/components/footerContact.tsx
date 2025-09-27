@@ -17,14 +17,14 @@ export default function FooterContact() {
 
         {/* Content wrapper with blend mode */}
         <div className="absolute inset-0 mix-blend-difference">
-          <div className="relative h-full flex flex-col items-center justify-end">
+          <div className="relative h-full flex flex-col items-center justify-end intersect-once intersect:motion-blur-in-md intersect:motion-opacity-in-0 motion-duration-2000 motion-delay-600">
             <img
               src="https://assets.abaly.ch/graffiti.webp"
               alt="graffiti"
               className="absolute left-1/2 pl-4 -translate-x-1/2 -top-0 w-full max-h-[50dvh] object-contain"
             />
             <div className="flex flex-col items-center justify-center gap-0 h-fit pt-42 ">
-              <h5 className="opacity-50 -translate-y-5 md:translate-y-0 lg:translate-y-10 text-white">
+              <h5 className="opacity-50 -translate-y-5 md:translate-y-0 lg:translate-y-10 text-white intersect-once intersect:motion-preset-blur-up-lg motion-duration-1000 motion-delay-600">
                 Contact me
               </h5>
               {/* TODO: used to be animated group before */}
